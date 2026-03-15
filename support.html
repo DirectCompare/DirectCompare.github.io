@@ -3,505 +3,329 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="DirectoryCompare Pro Support - Get help, submit bug reports, and find answers to common questions.">
+    <meta name="description" content="Support for DirectoryCompare Pro - help, troubleshooting, FAQs, and contact options.">
     <title>Support - DirectoryCompare Pro</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg: #07111f;
+            --panel: #0f1b2d;
+            --panel-2: #13243a;
+            --text: #eaf2ff;
+            --text-dark: #132033;
+            --muted: #a9b8cf;
+            --line: rgba(255, 255, 255, 0.12);
+            --line-dark: rgba(19, 32, 51, 0.12);
+            --brand: #6d8cff;
+            --brand-2: #8c6dff;
+            --accent: #4ee1c1;
+            --success: #16c47f;
+            --warning: #ffb84d;
+            --danger: #ff6b7a;
         }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #f5f5f5;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(109, 140, 255, 0.18), transparent 30%),
+                linear-gradient(180deg, #081221 0%, #0b1526 40%, #f5f9ff 40%, #f5f9ff 100%);
         }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
 
         .nav {
-            background: white;
-            padding: 15px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 20; backdrop-filter: blur(14px);
+            background: rgba(7, 17, 31, 0.74); border-bottom: 1px solid var(--line);
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .nav-inner {
+            min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
         }
 
-        .nav-links a {
-            color: #333;
-            text-decoration: none;
-            margin-left: 30px;
-            font-weight: 500;
-            transition: color 0.2s;
+        .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; }
+
+        .brand-mark {
+            width: 38px; height: 38px; border-radius: 12px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            display: inline-flex; align-items: center; justify-content: center; color: white;
         }
 
-        .nav-links a:hover {
-            color: #667eea;
+        .nav-links { display: flex; align-items: center; gap: 22px; color: var(--muted); font-size: 0.96rem; }
+        .nav-links a:hover { color: white; }
+        .nav-links a[aria-current="page"] { color: white; font-weight: 700; }
+        :focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+
+        .nav-cta {
+            padding: 11px 18px; border-radius: 999px; color: white; font-weight: 700;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
         }
 
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
+        .hero { padding: 72px 0 42px; }
+
+        .eyebrow {
+            display: inline-flex; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px;
+            color: var(--accent); font-weight: 700; font-size: 0.92rem; margin-bottom: 18px;
+            background: rgba(255,255,255,0.04);
         }
 
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.2rem); line-height: 1.05; letter-spacing: -0.04em; margin-bottom: 16px;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+        .hero p { color: var(--muted); font-size: 1.08rem; max-width: 760px; }
+
+        .section { padding: 34px 0 72px; color: var(--text-dark); }
+
+        .section-header { max-width: 760px; margin-bottom: 28px; }
+        .section-header h2 { font-size: clamp(1.9rem, 3vw, 2.8rem); margin-bottom: 10px; letter-spacing: -0.03em; }
+        .section-header p { color: #5b6a82; }
+
+
+        .contact-grid, .faq-grid, .issues-grid {
+            display: grid; gap: 22px;
         }
 
-        .section {
-            background: white;
-            margin: 30px 0;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        .contact-grid { grid-template-columns: repeat(4, 1fr); }
+        .faq-grid { grid-template-columns: repeat(2, 1fr); }
+        .issues-grid { grid-template-columns: repeat(3, 1fr); }
+
+        .card {
+            background: white; border: 1px solid var(--line-dark); border-radius: 20px; padding: 24px;
+            box-shadow: 0 18px 40px rgba(11, 21, 38, 0.06);
         }
 
-        .section h2 {
-            color: #667eea;
-            font-size: 2em;
-            margin-bottom: 20px;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
+        .card h3 { font-size: 1.15rem; margin-bottom: 10px; color: #0f1b2d; }
+        .card p, .card li { color: #5d6d86; }
+        .card ul, .card ol { padding-left: 18px; display: grid; gap: 8px; margin-top: 12px; }
+
+        .pill {
+            display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px;
+            border-radius: 14px; background: rgba(109, 140, 255, 0.12); color: var(--brand); font-weight: 800;
+            margin-bottom: 14px;
         }
 
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 30px 0;
-        }
-
-        .contact-card {
-            border: 2px solid #667eea;
-            border-radius: 8px;
-            padding: 30px;
-            text-align: center;
-            transition: box-shadow 0.2s;
-        }
-
-        .contact-card:hover {
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-        }
-
-        .contact-card h3 {
-            color: #667eea;
-            font-size: 1.5em;
-            margin-bottom: 15px;
-        }
-
-        .contact-card .icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-
-        .contact-btn {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 12px 30px;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.2s;
-            margin-top: 15px;
-        }
-
-        .contact-btn:hover {
-            background: #764ba2;
-        }
-
-        .faq-item {
-            margin: 25px 0;
-            padding: 20px;
-            background: #f9f9f9;
-            border-left: 4px solid #667eea;
-            border-radius: 5px;
-        }
-
-        .faq-item h3 {
-            color: #667eea;
-            margin-bottom: 10px;
+        .action-link {
+            display: inline-flex; margin-top: 16px; color: #244899; font-weight: 800;
         }
 
         .note {
-            background: #d1ecf1;
-            border-left: 4px solid #0c5460;
-            padding: 15px;
-            margin: 20px 0;
+            margin-top: 18px; background: #eef8ff; color: #24405f; border: 1px solid rgba(36,64,95,0.10);
+            border-radius: 18px; padding: 18px 20px;
         }
 
-        .note strong {
-            color: #0c5460;
+        .warn {
+            background: #fff8ea; color: #6f5316; border: 1px solid rgba(111,83,22,0.12);
         }
 
-        .highlight {
-            background: #fff3cd;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-weight: 600;
+        .danger {
+            background: #fff0f3; color: #8b3140; border: 1px solid rgba(139,49,64,0.12);
         }
 
-        code {
-            background: #f4f4f4;
-            padding: 2px 6px;
-            border-radius: 3px;
+        code, pre {
             font-family: 'Courier New', monospace;
         }
 
+        code {
+            background: #eef3fb; padding: 2px 6px; border-radius: 6px;
+        }
+
         pre {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-            margin: 10px 0;
+            margin-top: 12px; background: #0f1b2d; color: #dce8ff; padding: 16px; border-radius: 14px; overflow-x: auto;
         }
 
         .footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
+            color: #6d7d96; padding: 18px 0 56px; text-align: center; font-size: 0.95rem;
         }
 
-        .footer a {
-            color: #667eea;
-            text-decoration: none;
+        .footer a { color: #284a9e; font-weight: 700; }
+
+        @media (max-width: 1100px) {
+            .contact-grid, .issues-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        ul {
-            padding-left: 25px;
-            margin: 15px 0;
-        }
-
-        li {
-            margin: 10px 0;
+        @media (max-width: 860px) {
+            .nav-inner { min-height: auto; padding: 14px 0; flex-wrap: wrap; }
+            .nav-links { width: 100%; flex-wrap: wrap; gap: 14px; justify-content: space-between; }
+            .contact-grid, .faq-grid, .issues-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <nav class="nav">
-        <div class="nav-container">
-            <div><strong>DirectoryCompare Pro</strong></div>
+        <div class="container nav-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark">DC</span>
+                <span>DirectoryCompare Pro</span>
+            </a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="download.html">Download</a>
-                <a href="support.html">Support</a>
+                <a href="support.html" aria-current="page">Support</a>
                 <a href="privacy.html">Privacy</a>
-                <a href="https://github.com/DirCompare-Pro/DirectoryComparePro" target="_blank">GitHub</a>
+                <a href="https://github.com/DirCompare-Pro/DirectoryComparePro" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="download.html" class="nav-cta">Download Free</a>
             </div>
         </div>
     </nav>
 
-    <div class="header">
-        <h1>Support & Help</h1>
-        <p>We're here to help you get the most out of DirectoryCompare Pro</p>
-    </div>
-
-    <div class="container">
-        <div class="section">
-            <h2>Contact Us</h2>
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <div class="icon">📧</div>
-                    <h3>Email Support</h3>
-                    <p>For bug reports, feature requests, license issues, or general questions</p>
-                    <a href="mailto:dircomparepro@gmail.com" class="contact-btn">dircomparepro@gmail.com</a>
-                    <p style="margin-top: 15px; font-size: 0.9em; color: #666;">Response time: 8-48 hours</p>
-                </div>
-
-                <div class="contact-card">
-                    <div class="icon">🐛</div>
-                    <h3>Bug Report (In-App)</h3>
-                    <p>Submit detailed bug reports directly from DirectoryCompare Pro</p>
-                    <a href="#" class="contact-btn" style="background: #764ba2; cursor: help;"
-                       title="Open DirectoryCompare Pro → Help → Submit Bug Report">Open in App</a>
-                    <p style="margin-top: 15px; font-size: 0.9em; color: #666;">Earn free license upgrades for helpful feedback!</p>
-                </div>
-
-                <div class="contact-card">
-                    <div class="icon">💬</div>
-                    <h3>GitHub Discussions</h3>
-                    <p>Ask questions, share tips, and discuss features with the community</p>
-                    <a href="https://github.com/DirCompare-Pro/DirectoryComparePro/discussions" target="_blank" class="contact-btn">Join Discussion</a>
-                    <p style="margin-top: 15px; font-size: 0.9em; color: #666;">Public community support</p>
-                </div>
-
-                <div class="contact-card">
-                    <div class="icon">🔒</div>
-                    <h3>Security Issues</h3>
-                    <p>Report security vulnerabilities privately</p>
-                    <a href="mailto:dircomparepro@gmail.com?subject=SECURITY" class="contact-btn" style="background: #dc3545;">Report Privately</a>
-                    <p style="margin-top: 15px; font-size: 0.9em; color: #666;">Response time: 24 hours for critical issues</p>
-                </div>
-            </div>
-
-            <div class="note">
-                <strong>Bug Report Rewards:</strong> Submit useful bug reports or feature requests via the in-app dialog
-                (Help → Submit Bug Report) and you may receive a free license upgrade! We reward detailed, actionable feedback
-                with Premium or Enterprise licenses sent directly to your email.
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Documentation</h2>
-            <ul style="font-size: 1.1em;">
-                <li><strong>In-App Help:</strong> Press <code>F1</code> in DirectoryCompare Pro for comprehensive documentation</li>
-                <li><strong>README.md:</strong> Included in the <a href="download.html" style="color: #667eea; font-weight: 600;">portable ZIP package</a></li>
-                <li><strong>CHANGELOG.md:</strong> Complete version history and release notes</li>
-                <li><strong>GitHub Wiki:</strong> <a href="https://github.com/DirCompare-Pro/DirectoryComparePro/wiki" target="_blank" style="color: #667eea; font-weight: 600;">Coming soon</a></li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Frequently Asked Questions (FAQ)</h2>
-
-            <div class="faq-item">
-                <h3>Q: How do I activate my license key?</h3>
-                <p><strong>A:</strong> In DirectoryCompare Pro, go to <strong>Help → Register</strong>, paste your license key, and click Activate. Your key format should be:</p>
-                <pre>Tier:MachineID:Signature</pre>
-                <p>Example: <code>Premium:CPU123...:SGVsbG8...</code></p>
-            </div>
-
-            <div class="faq-item">
-                <h3>Q: Can I transfer my license to a new computer?</h3>
-                <p><strong>A:</strong> License keys are hardware-bound to your specific computer. If you upgrade your hardware or switch computers, contact us at <a href="mailto:dircomparepro@gmail.com" style="color: #667eea;">dircomparepro@gmail.com</a> with your original license key and new Machine ID. We'll issue a new key for your new hardware.</p>
-            </div>
-
-            <div class="faq-item">
-                <h3>Q: How do I find my Machine ID for license support?</h3>
-                <p><strong>A:</strong> Go to <strong>Help → Register</strong> in DirectoryCompare Pro. Your Machine ID is displayed at the bottom of the registration dialog. It looks like:</p>
-                <pre>CPU:BFEBFBFF00090675_DISK:12345678_MACHINE:DESKTOP-ABC123</pre>
-            </div>
-
-            <div class="faq-item">
-                <h3>Q: What archive formats are supported?</h3>
-                <p><strong>A:</strong> DirectoryCompare Pro v1.01 supports:</p>
-                <ul>
-                    <li><strong>Archives:</strong> ZIP, TAR, 7Z, RAR, ISO, CAB, AR, CPIO</li>
-                    <li><strong>Compression:</strong> GZ, BZ2, XZ, LZMA, LZ4, ZSTD</li>
-                    <li><strong>Password protection:</strong> ZIP, RAR, 7Z (password dialog appears when needed)</li>
-                </ul>
-            </div>
-
-            <div class="faq-item">
-                <h3>Q: How do I compare GitHub repositories without cloning?</h3>
-                <p><strong>A:</strong></p>
-                <ol>
-                    <li>Click <strong>"Switch to N-way Mode"</strong></li>
-                    <li>Click <strong>"Add Source"</strong> → Select <strong>"GitHub"</strong></li>
-                    <li>Enter GitHub URL: <code>https://github.com/owner/repo</code></li>
-                    <li>Click <strong>"Compare"</strong></li>
-                </ol>
-                <p><strong>Note:</strong> For private repos or to avoid rate limits (60 req/hour), set your GitHub token in <strong>Settings → GitHub Token</strong>. This increases your limit to 5,000 req/hour.</p>
-            </div>
-
-            <div class="faq-item">
-                <h3>Q: How do I create a GitHub personal access token?</h3>
-                <p><strong>A:</strong></p>
-                <ol>
-                    <li>Go to GitHub Settings → Developer settings → Personal access tokens</li>
-                    <li>Click "Generate new token (classic)"</li>
-                    <li>Select scope: <code>repo</code> (for private repos) or <code>public_repo</code> (for public only)</li>
-                    <li>Copy the token and paste it in DirectoryCompare Pro: <strong>Settings → GitHub Token</strong></li>
-                </ol>
-            </div>
-
-            <div class="faq-item">
-                <h3>Q: Can I compare FTP servers?</h3>
-                <p><strong>A:</strong> Yes! DirectoryCompare Pro v1.01 supports FTP, FTPS (TLS/SSL), and SFTP (SSH):</p>
-                <ol>
-                    <li>Switch to N-way mode</li>
-                    <li>Add Source → Select "FTP"</li>
-                    <li>Click "Configure" to enter server details (host, port, username, password)</li>
-                    <li>Select protocol: FTP (port 21), FTPS (port 990), or SFTP (port 22)</li>
-                    <li>Click "Compare"</li>
-                </ol>
-            </div>
-
-            <div class="faq-item">
-                <h3>Q: How do I find duplicate files using similarity search?</h3>
-                <p><strong>A:</strong> Go to <strong>Tools → Similarity Search</strong>:</p>
-                <ul>
-                    <li><strong>Text files:</strong> Use Jaccard or Line Similarity matcher</li>
-                    <li><strong>Images:</strong> Use dHash or aHash (finds duplicates even if resized)</li>
-                    <li><strong>Exact duplicates:</strong> Use SHA-256 Content Hash</li>
-                </ul>
-                <p>Set similarity threshold (e.g., 80%) and click "Search". Results show all file pairs above the threshold.</p>
-            </div>
-
-            <div class="faq-item">
-                <h3>Q: The app shows "License validation failed" - what do I do?</h3>
-                <p><strong>A:</strong> Common causes:</p>
-                <ul>
-                    <li><strong>Wrong Machine ID:</strong> License was generated for different hardware</li>
-                    <li><strong>Tampered key:</strong> Key was modified or corrupted</li>
-                    <li><strong>Hardware change:</strong> CPU, disk, or machine name changed</li>
-                </ul>
-                <p><strong>Solution:</strong> Email <a href="mailto:dircomparepro@gmail.com" style="color: #667eea;">dircomparepro@gmail.com</a> with your license key and current Machine ID. We'll issue a corrected key.</p>
-            </div>
-
-            <div class="faq-item">
-                <h3>Q: How do I reset my trial?</h3>
-                <p><strong>A:</strong> Trials are hardware-bound and cannot be reset by deleting files. If your 7-day trial has expired, you can:</p>
-                <ul>
-                    <li>Purchase a license (Standard $39, Premium $79, Lifetime $199)</li>
-                    <li>Submit useful bug reports via in-app dialog to earn free upgrade</li>
-                    <li>Use Basic (free) tier with limited features</li>
-                </ul>
-            </div>
-
-            <div class="faq-item">
-                <h3>Q: Does DirectoryCompare Pro work offline?</h3>
-                <p><strong>A:</strong> Yes! License validation is fully offline after initial activation. Internet is only required for:</p>
-                <ul>
-                    <li>GitHub repository comparison (uses GitHub API)</li>
-                    <li>FTP/FTPS/SFTP comparison (connects to your servers)</li>
-                    <li>Bug report submission (optional - falls back to clipboard if offline)</li>
-                </ul>
-            </div>
-
-            <div class="faq-item">
-                <h3>Q: Is there a Linux version?</h3>
-                <p><strong>A:</strong> Yes! DirectoryCompare Pro v1.01 includes full Linux support with 100% feature parity.
-                Download the Linux package from the <a href="download.html" style="color: #667eea; font-weight: 600;">Download page</a>.
-                Tested on Ubuntu 22.04+, Debian, and Kali Linux. All features work identically on both Windows and Linux,
-                including N-way comparison, Git/GitHub integration, archive support, and enterprise licensing.</p>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Known Issues</h2>
-
-            <div class="faq-item">
-                <h3>Large Directories (100,000+ files)</h3>
-                <p><strong>Issue:</strong> Scanning may take several minutes</p>
-                <p><strong>Workaround:</strong> Use file filtering to reduce scope (e.g., <code>*.cpp</code> or <code>src/**</code>)</p>
-            </div>
-
-            <div class="faq-item">
-                <h3>GitHub API Rate Limits</h3>
-                <p><strong>Issue:</strong> 60 requests/hour without token, 5,000 with token</p>
-                <p><strong>Solution:</strong> Set GitHub token in Settings dialog (see FAQ above)</p>
-            </div>
-
-            <div class="faq-item">
-                <h3>Memory Usage on Large Comparisons</h3>
-                <p><strong>Issue:</strong> May use 500+ MB RAM for very large comparisons</p>
-                <p><strong>Expected behavior:</strong> Memory is released after comparison completes. If memory stays high, restart the app.</p>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Troubleshooting</h2>
-
-            <h3 style="color: #667eea; margin-bottom: 15px;">App Won't Start</h3>
-            <ul>
-                <li>Ensure you're running Windows 10/11 (64-bit)</li>
-                <li>Check if antivirus is blocking the executable (add exception)</li>
-                <li>Download fresh copy from <a href="download.html" style="color: #667eea;">official download page</a></li>
-                <li>Verify SHA-256 checksum to ensure file isn't corrupted</li>
-            </ul>
-
-            <h3 style="color: #667eea; margin-top: 30px; margin-bottom: 15px;">Comparison Takes Forever</h3>
-            <ul>
-                <li>Enable "Show Progress" to see what's happening</li>
-                <li>Disable "Deep Compare" (SHA-256 hashing) for faster scans</li>
-                <li>Use file filters to exclude unnecessary directories (e.g., <code>node_modules/</code>, <code>.git/</code>)</li>
-                <li>Click "Cancel" if comparison is stuck</li>
-            </ul>
-
-            <h3 style="color: #667eea; margin-top: 30px; margin-bottom: 15px;">GitHub Comparison Fails</h3>
-            <ul>
-                <li>Check repository URL format: <code>https://github.com/owner/repo</code></li>
-                <li>For private repos, set GitHub token in Settings</li>
-                <li>Verify internet connection</li>
-                <li>Check if you've hit rate limit (60 req/hour) - wait or add token</li>
-            </ul>
-
-            <h3 style="color: #667eea; margin-top: 30px; margin-bottom: 15px;">FTP Connection Fails</h3>
-            <ul>
-                <li>Verify host, port, username, password are correct</li>
-                <li>Check firewall isn't blocking outbound FTP (port 21) or SFTP (port 22)</li>
-                <li>Try passive mode if active mode fails</li>
-                <li>For FTPS, ensure server supports TLS/SSL</li>
-            </ul>
-
-            <h3 style="color: #667eea; margin-top: 30px; margin-bottom: 15px;">Archive Won't Open</h3>
-            <ul>
-                <li>Check if archive is password-protected (password dialog should appear)</li>
-                <li>Verify archive isn't corrupted (try opening in 7-Zip or WinRAR)</li>
-                <li>For unsupported formats, extract manually first then compare directory</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Feature Requests</h2>
-            <p>
-                We'd love to hear your ideas! Submit feature requests via:
-            </p>
-            <ul>
-                <li><strong>In-app:</strong> Help → Submit Bug Report / Feedback (earn rewards for great ideas!)</li>
-                <li><strong>Email:</strong> <a href="mailto:dircomparepro@gmail.com" style="color: #667eea;">dircomparepro@gmail.com</a></li>
-                <li><strong>GitHub:</strong> <a href="https://github.com/DirCompare-Pro/DirectoryComparePro/discussions" target="_blank" style="color: #667eea;">Open a discussion</a></li>
-            </ul>
-
-            <div class="note">
-                <strong>Tip:</strong> Detailed feature requests that explain the use case and provide examples are more likely to be
-                implemented (and may earn you a free license upgrade!).
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Commercial Support</h2>
-            <p>For priority support and enterprise licensing:</p>
-            <ul>
-                <li><strong>Email:</strong> <a href="mailto:dircomparepro@gmail.com" style="color: #667eea; font-weight: 600;">dircomparepro@gmail.com</a></li>
-                <li><strong>Response times:</strong> 8-48 hours depending on tier</li>
-                <li><strong>Enterprise tier:</strong> Includes SLA, custom features, team licenses</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="footer">
+    <header class="hero">
         <div class="container">
-            <p><strong>DirectoryCompare Pro v1.01</strong></p>
-            <p>Released December 28, 2025</p>
-            <p style="margin-top: 15px;">
-                <a href="index.html">Home</a> |
-                <a href="download.html">Download</a> |
-                <a href="support.html">Support</a> |
-                <a href="privacy.html">Privacy Policy</a> |
-                <a href="https://github.com/DirCompare-Pro/DirectoryComparePro" target="_blank">GitHub</a>
-            </p>
-            <p style="margin-top: 15px;">
-                Email: <a href="mailto:dircomparepro@gmail.com">dircomparepro@gmail.com</a>
-            </p>
-            <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
-                &copy; 2025 DirectoryCompare Pro. All rights reserved.
+            <div class="eyebrow">Help, troubleshooting, and contact options</div>
+            <h1>Get help quickly — without digging through clutter.</h1>
+            <p>
+                Use this page to find support options, common troubleshooting steps, license help, and answers to the questions most people ask before or after installing DirectoryCompare Pro.
             </p>
         </div>
-    </div>
+    </header>
+
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Support options</h2>
+                    <p>Choose the fastest path depending on whether you need installation help, bug reporting, licensing support, or general product guidance.</p>
+                </div>
+                <div class="contact-grid">
+                    <article class="card">
+                        <div class="pill" aria-hidden="true">✉</div>
+                        <h3>Email support</h3>
+                        <p>Best for installation problems, licensing questions, product issues, and feature requests.</p>
+                        <p style="margin-top:10px;font-size:0.9rem;color:#5d6d86;">Typical response: within 2 business days</p>
+                        <a class="action-link" href="mailto:dircomparepro@gmail.com">dircomparepro@gmail.com</a>
+                    </article>
+                    <article class="card">
+                        <div class="pill" aria-hidden="true">🐞</div>
+                        <h3>In-app bug report</h3>
+                        <p>Use <code>Help → Submit Bug Report</code> in the app when you want to send actionable feedback from inside DirectoryCompare Pro.</p>
+                        <div class="note">Detailed reports can be more helpful than short emails because they include the problem description in the right workflow context.</div>
+                    </article>
+                    <article class="card">
+                        <div class="pill" aria-hidden="true">💬</div>
+                        <h3>GitHub discussions</h3>
+                        <p>Useful for public questions, workflow discussion, and community-style support.</p>
+                        <a class="action-link" href="https://github.com/DirCompare-Pro/DirectoryComparePro/discussions" target="_blank" rel="noopener noreferrer">Open discussions</a>
+                    </article>
+                    <article class="card">
+                        <div class="pill" aria-hidden="true">🔒</div>
+                        <h3>Security reporting</h3>
+                        <p>If you believe you found a security issue, report it privately instead of posting it publicly first.</p>
+                        <a class="action-link" href="mailto:dircomparepro@gmail.com?subject=SECURITY">Report privately</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Frequently asked questions</h2>
+                    <p>These are the practical questions most people ask around install, activation, source types, and upgrades.</p>
+                </div>
+                <div class="faq-grid">
+                    <article class="card">
+                        <h3>How do I start the 7-day trial?</h3>
+                        <p>The trial starts automatically on first launch — no sign-up required. You get full Premium access for 7 days. After that, the app continues as Basic (free) unless you activate a license.</p>
+                    </article>
+                    <article class="card">
+                        <h3>How do I activate my license?</h3>
+                        <p>Open <code>Help → Register</code>, paste your license key, and activate it there. Keys are machine-bound.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Can I move my license to another computer?</h3>
+                        <p>Because licensing is tied to the machine, moving to a new computer usually requires support help and a replacement key.</p>
+                    </article>
+                    <article class="card">
+                        <h3>What’s included in the free tier?</h3>
+                        <p>The free tier includes strong 2-way compare plus diff, merge, archives, CSV, Excel, image diff, hex compare, patch support, exports, sessions, and sync preview. There is also a 7-day full-featured trial if you want to evaluate paid capabilities first.</p>
+                    </article>
+                    <article class="card">
+                        <h3>What does Standard unlock?</h3>
+                        <p>Standard ($39/yr) unlocks N-way workflows, Git branch/commit compare, GitHub repository compare, plugin viewers, and themed UI features.</p>
+                    </article>
+                    <article class="card">
+                        <h3>What does Premium unlock?</h3>
+                        <p>Premium ($79/yr) adds web URL compare, FTP/SFTP compare, similarity search, and duplicate detection workflows.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Does it work offline?</h3>
+                        <p>Yes for local workflows and license use after activation. Internet is only needed for remote source workflows like GitHub, web URL, or FTP/SFTP comparison.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Can it compare more than plain folders?</h3>
+                        <p>Yes. It supports archives, CSV files, Excel spreadsheets, images, hex/binary files, patches, and more.</p>
+                    </article>
+                    <article class="card">
+                        <h3>How do I report a difficult bug clearly?</h3>
+                        <p>Include what you compared, which mode you were using, what you expected, what happened instead, and whether the issue is repeatable.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Troubleshooting and known friction points</h2>
+                    <p>These are the issues most likely to block installation or comparison workflows.</p>
+                </div>
+                <div class="issues-grid">
+                    <article class="card">
+                        <h3>App won’t start</h3>
+                        <ul>
+                            <li>Verify you downloaded the correct package for your platform.</li>
+                            <li>Check whether antivirus quarantined or blocked the executable.</li>
+                            <li>Download a fresh copy if the existing archive may be damaged.</li>
+                            <li>Verify checksums if you publish them for release files.</li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h3>Large comparisons feel slow</h3>
+                        <ul>
+                            <li>Reduce scope with file filters where possible.</li>
+                            <li>Avoid deeper comparison modes unless you need them.</li>
+                            <li>Use session history and bookmarks for repeated workflows.</li>
+                            <li>Very large trees can take time regardless of tool choice.</li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h3>GitHub or remote sources fail</h3>
+                        <ul>
+                            <li>Double-check repository URL, login details, host, and ports.</li>
+                            <li>For GitHub private repos, token configuration may be required.</li>
+                            <li>For FTP/SFTP, verify credentials and outbound firewall rules.</li>
+                            <li>Remember that remote workflows require internet access.</li>
+                        </ul>
+                    </article>
+                </div>
+
+                <div class="note warn">
+                    <strong>Tip:</strong> If you’re contacting support, include the exact source type involved — local, archive, CSV, Excel, image, Git, GitHub, web URL, or FTP/SFTP — because that speeds up diagnosis a lot.
+                </div>
+
+                <div class="note danger">
+                    <strong>License note:</strong> Machine-bound licensing means hardware changes may affect activation. If that happens, contact support with the old key details and the new machine information shown in the app.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>
+                <strong>DirectoryCompare Pro</strong> •
+                <a href="index.html">Home</a> •
+                <a href="download.html">Download</a> •
+                <a href="privacy.html">Privacy</a> •
+                <a href="https://github.com/DirCompare-Pro/DirectoryComparePro" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </p>
+        </div>
+    </footer>
 </body>
 </html>

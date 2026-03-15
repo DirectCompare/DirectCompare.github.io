@@ -3,462 +3,271 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Privacy Policy for DirectoryCompare Pro - How we handle your data.">
-    <title>Privacy Policy - DirectoryCompare Pro</title>
+    <meta name="description" content="Privacy information for DirectoryCompare Pro, including local data storage, licensing data, support submissions, and optional remote-source behavior.">
+    <title>Privacy - DirectoryCompare Pro</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg: #07111f;
+            --panel: #0f1b2d;
+            --panel-2: #13243a;
+            --text: #eaf2ff;
+            --text-dark: #132033;
+            --muted: #a9b8cf;
+            --line: rgba(255, 255, 255, 0.12);
+            --line-dark: rgba(19, 32, 51, 0.12);
+            --brand: #6d8cff;
+            --brand-2: #8c6dff;
+            --accent: #4ee1c1;
         }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f5f5f5;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.65;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(109, 140, 255, 0.18), transparent 30%),
+                linear-gradient(180deg, #081221 0%, #0b1526 40%, #f5f9ff 40%, #f5f9ff 100%);
         }
+
+        a { color: inherit; text-decoration: none; }
+        .container { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
 
         .nav {
-            background: white;
-            padding: 15px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 20; backdrop-filter: blur(14px);
+            background: rgba(7, 17, 31, 0.74); border-bottom: 1px solid var(--line);
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .nav-inner {
+            min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
         }
 
-        .nav-links a {
-            color: #333;
-            text-decoration: none;
-            margin-left: 30px;
-            font-weight: 500;
-            transition: color 0.2s;
+        .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; }
+
+        .brand-mark {
+            width: 38px; height: 38px; border-radius: 12px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            display: inline-flex; align-items: center; justify-content: center; color: white;
         }
 
-        .nav-links a:hover {
-            color: #667eea;
+        .nav-links { display: flex; align-items: center; gap: 22px; color: var(--muted); font-size: 0.96rem; }
+        .nav-links a:hover { color: white; }
+        .nav-links a[aria-current="page"] { color: white; font-weight: 700; }
+        :focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+
+        .nav-cta {
+            padding: 11px 18px; border-radius: 999px; color: white; font-weight: 700;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
         }
 
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
+        .hero { padding: 72px 0 42px; }
+
+        .eyebrow {
+            display: inline-flex; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px;
+            color: var(--accent); font-weight: 700; font-size: 0.92rem; margin-bottom: 18px;
+            background: rgba(255,255,255,0.04);
         }
 
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+        h1 {
+            font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.05; letter-spacing: -0.04em; margin-bottom: 16px;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+        .hero p { color: var(--muted); font-size: 1.08rem; max-width: 780px; }
 
-        .section {
-            background: white;
-            margin: 30px 0;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+        .section { padding: 34px 0 72px; color: var(--text-dark); }
+        .section-header { max-width: 760px; margin-bottom: 28px; }
+        .section-header h2 { font-size: clamp(1.9rem, 3vw, 2.7rem); margin-bottom: 10px; letter-spacing: -0.03em; }
+        .section-header p { color: #5b6a82; }
 
-        .section h2 {
-            color: #667eea;
-            font-size: 1.8em;
+        .card {
+            background: white; border: 1px solid var(--line-dark); border-radius: 20px; padding: 24px;
+            box-shadow: 0 18px 40px rgba(11, 21, 38, 0.06);
             margin-bottom: 20px;
-            margin-top: 30px;
         }
 
-        .section h2:first-child {
-            margin-top: 0;
-        }
-
-        .section h3 {
-            color: #764ba2;
-            font-size: 1.3em;
-            margin-bottom: 15px;
-            margin-top: 25px;
-        }
-
-        .last-updated {
-            background: #f9f9f9;
-            padding: 15px;
-            border-left: 4px solid #667eea;
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
-
-        ul {
-            padding-left: 25px;
-            margin: 15px 0;
-        }
-
-        li {
-            margin: 10px 0;
-        }
-
-        .highlight {
-            background: #fff3cd;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-weight: 600;
-        }
+        .card h3 { font-size: 1.16rem; margin-bottom: 10px; color: #0f1b2d; }
+        .card p, .card li { color: #5d6d86; }
+        .card ul { padding-left: 18px; display: grid; gap: 8px; margin-top: 12px; }
 
         .note {
-            background: #d1ecf1;
-            border-left: 4px solid #0c5460;
-            padding: 15px;
-            margin: 20px 0;
+            margin-top: 16px; background: #eef8ff; color: #24405f; border: 1px solid rgba(36,64,95,0.10);
+            border-radius: 18px; padding: 18px 20px;
         }
 
-        .note strong {
-            color: #0c5460;
-        }
+        code { background: #eef3fb; padding: 2px 6px; border-radius: 6px; font-family: 'Courier New', monospace; }
 
         .footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
+            color: #6d7d96; padding: 18px 0 56px; text-align: center; font-size: 0.95rem;
         }
 
-        .footer a {
-            color: #667eea;
-            text-decoration: none;
-        }
+        .footer a { color: #284a9e; font-weight: 700; }
 
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background: #667eea;
-            color: white;
-            font-weight: 600;
-        }
-
-        tr:hover {
-            background: #f5f5f5;
-        }
-
-        code {
-            background: #f4f4f4;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Courier New', monospace;
+        @media (max-width: 860px) {
+            .nav-inner { min-height: auto; padding: 14px 0; flex-wrap: wrap; }
+            .nav-links { width: 100%; flex-wrap: wrap; gap: 14px; justify-content: space-between; }
         }
     </style>
 </head>
 <body>
     <nav class="nav">
-        <div class="nav-container">
-            <div><strong>DirectoryCompare Pro</strong></div>
+        <div class="container nav-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark">DC</span>
+                <span>DirectoryCompare Pro</span>
+            </a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="download.html">Download</a>
                 <a href="support.html">Support</a>
                 <a href="privacy.html">Privacy</a>
-                <a href="https://github.com/DirCompare-Pro/DirectoryComparePro" target="_blank">GitHub</a>
+                <a href="https://github.com/DirCompare-Pro/DirectoryComparePro" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="download.html" class="nav-cta">Download Free</a>
             </div>
         </div>
     </nav>
 
-    <div class="header">
-        <h1>Privacy Policy</h1>
-        <p>Your privacy matters to us</p>
-    </div>
-
-    <div class="container">
-        <div class="section">
-            <div class="last-updated">
-                <strong>Last Updated:</strong> December 28, 2025
-            </div>
-
-            <h2>Overview</h2>
-            <p>
-                DirectoryCompare Pro is committed to protecting your privacy. This Privacy Policy explains what data we collect,
-                how we use it, and your rights regarding your information.
-            </p>
-
-            <div class="note">
-                <strong>Key Principle:</strong> We never share your data with third parties. Your information is used only for
-                product support, bug fixes, and license rewards.
-            </div>
-
-            <h2>Data Collection</h2>
-
-            <h3>1. License Activation Data</h3>
-            <p>When you activate a license key, we collect:</p>
-            <table>
-                <tr>
-                    <th>Data Type</th>
-                    <th>Purpose</th>
-                    <th>Storage</th>
-                </tr>
-                <tr>
-                    <td><strong>Machine ID</strong></td>
-                    <td>Hardware fingerprint for license binding (CPU ID, disk serial, machine name)</td>
-                    <td>Local only - stored in <code>%APPDATA%\DirectoryComparePro</code></td>
-                </tr>
-                <tr>
-                    <td><strong>License Tier</strong></td>
-                    <td>Determine available features</td>
-                    <td>Local only</td>
-                </tr>
-                <tr>
-                    <td><strong>Activation Date</strong></td>
-                    <td>Trial expiration tracking</td>
-                    <td>Local only</td>
-                </tr>
-            </table>
-
-            <p style="margin-top: 15px;">
-                <strong>Important:</strong> License validation happens <span class="highlight">offline</span>. No internet connection
-                is required after initial activation. Your machine ID never leaves your computer during normal usage.
-            </p>
-
-            <h3>2. Bug Report / Feedback Submissions</h3>
-            <p>When you submit a bug report or feedback via the in-app dialog, we collect:</p>
-            <table>
-                <tr>
-                    <th>Data Type</th>
-                    <th>Purpose</th>
-                    <th>Required?</th>
-                </tr>
-                <tr>
-                    <td><strong>Name</strong></td>
-                    <td>Personalize communication and reward emails</td>
-                    <td>Yes</td>
-                </tr>
-                <tr>
-                    <td><strong>Email Address</strong></td>
-                    <td>Send license key rewards, follow-up questions</td>
-                    <td>Yes</td>
-                </tr>
-                <tr>
-                    <td><strong>Machine ID</strong></td>
-                    <td>Generate hardware-bound reward license keys, track duplicate reports</td>
-                    <td>Yes (automatic)</td>
-                </tr>
-                <tr>
-                    <td><strong>Bug Description</strong></td>
-                    <td>Understand and fix reported issues</td>
-                    <td>Yes</td>
-                </tr>
-                <tr>
-                    <td><strong>System Info</strong></td>
-                    <td>OS version, build date for troubleshooting</td>
-                    <td>Yes (automatic)</td>
-                </tr>
-            </table>
-
-            <p style="margin-top: 15px;">
-                <strong>How We Use This Data:</strong>
-            </p>
-            <ul>
-                <li><strong>Bug fixes:</strong> Reproduce and fix reported issues</li>
-                <li><strong>License rewards:</strong> Generate free Premium/Enterprise license keys for helpful feedback</li>
-                <li><strong>Duplicate tracking:</strong> Identify if multiple users report the same issue</li>
-                <li><strong>Support:</strong> Follow up with questions if needed to resolve your issue</li>
-            </ul>
-
-            <p style="margin-top: 15px;">
-                <strong>Reward System:</strong> If your bug report or feedback is particularly helpful (e.g., identifies a critical bug,
-                suggests a valuable feature), we may email you a free license key upgrade as a thank you. The machine ID you submit
-                allows us to generate a hardware-bound key that works only on your computer.
-            </p>
-
-            <h3>3. Application Settings</h3>
-            <p>DirectoryCompare Pro stores your preferences locally on your computer:</p>
-            <ul>
-                <li><strong>Location:</strong> <code>%APPDATA%\DirectoryComparePro\config.json</code> (Windows) or <code>~/.dircompare/config.json</code> (Linux)</li>
-                <li><strong>Contains:</strong> Window size, recent directories, bookmarks, GitHub tokens, FTP credentials</li>
-                <li><strong>Transmission:</strong> Never sent to us - stays on your computer</li>
-            </ul>
-
-            <div class="note">
-                <strong>Security Note:</strong> GitHub tokens and FTP passwords are stored in plain text locally. We recommend using
-                read-only tokens and non-critical FTP accounts. We plan to add encryption in a future update.
-            </div>
-
-            <h2>Data We DON'T Collect</h2>
-            <ul>
-                <li><strong>File contents:</strong> We never see the files you compare</li>
-                <li><strong>Directory paths:</strong> Your local folder paths are never transmitted</li>
-                <li><strong>Usage analytics:</strong> No telemetry, no tracking, no "phone home"</li>
-                <li><strong>Crash reports:</strong> Not automatically collected (you must manually submit via bug report dialog)</li>
-                <li><strong>IP addresses:</strong> Not logged during license activation or bug report submission</li>
-            </ul>
-
-            <h2>Third-Party Services</h2>
-
-            <h3>GitHub API (Optional)</h3>
-            <p>
-                If you use the GitHub integration feature, DirectoryCompare Pro connects to GitHub's public API to fetch repository
-                file trees. This connection is made directly from your computer to GitHub - we do not act as a proxy.
-            </p>
-            <ul>
-                <li><strong>What's sent:</strong> Your GitHub token (if configured), repository URL, branch name</li>
-                <li><strong>Who receives it:</strong> GitHub, Inc. (subject to <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" style="color: #667eea;">GitHub's Privacy Policy</a>)</li>
-                <li><strong>What we see:</strong> Nothing - this data goes directly to GitHub</li>
-            </ul>
-
-            <h3>FTP/FTPS/SFTP Servers (Optional)</h3>
-            <p>
-                If you use the FTP integration feature, DirectoryCompare Pro connects directly to your specified FTP server.
-                Your credentials are sent directly from your computer to your FTP server - not through our systems.
-            </p>
-
-            <h2>Data Retention</h2>
-            <table>
-                <tr>
-                    <th>Data Type</th>
-                    <th>Retention Period</th>
-                </tr>
-                <tr>
-                    <td><strong>License activation data</strong></td>
-                    <td>Stored locally on your computer indefinitely (you can delete anytime)</td>
-                </tr>
-                <tr>
-                    <td><strong>Bug reports</strong></td>
-                    <td>Retained until issue resolved, then archived (typically 1-2 years)</td>
-                </tr>
-                <tr>
-                    <td><strong>Application settings</strong></td>
-                    <td>Stored locally on your computer until you uninstall</td>
-                </tr>
-            </table>
-
-            <h2>Your Rights</h2>
-
-            <h3>Right to Access</h3>
-            <p>
-                You can request a copy of any data we have about you by emailing
-                <a href="mailto:dircomparepro@gmail.com" style="color: #667eea; font-weight: 600;">dircomparepro@gmail.com</a>.
-            </p>
-
-            <h3>Right to Deletion</h3>
-            <p>
-                You can request deletion of your data by emailing us. Note that deleting bug report data may prevent us from
-                sending you reward license keys in the future.
-            </p>
-
-            <h3>Right to Correction</h3>
-            <p>
-                If your email address or name in a bug report is incorrect, contact us to update it.
-            </p>
-
-            <h3>Right to Portability</h3>
-            <p>
-                All your local data (settings, bookmarks) is stored in plain JSON files at
-                <code>%APPDATA%\DirectoryComparePro</code> (Windows) or <code>~/.dircompare</code> (Linux).
-                You can copy these files to another computer anytime.
-            </p>
-
-            <h2>Data Security</h2>
-            <p>We protect your data through:</p>
-            <ul>
-                <li><strong>RSA-2048 encryption:</strong> License keys are cryptographically signed to prevent tampering</li>
-                <li><strong>Local-first design:</strong> Most data never leaves your computer</li>
-                <li><strong>No cloud storage:</strong> We don't store your files or comparison results on servers</li>
-                <li><strong>HTTPS transmission:</strong> Bug reports sent over encrypted HTTPS (when API available)</li>
-                <li><strong>Email fallback:</strong> If HTTPS fails, bug reports copied to clipboard for manual email (you control what's sent)</li>
-            </ul>
-
-            <h2>Children's Privacy</h2>
-            <p>
-                DirectoryCompare Pro is not intended for children under 13. We do not knowingly collect personal information from
-                children. If you believe we have collected data from a child, please contact us immediately.
-            </p>
-
-            <h2>International Users</h2>
-            <p>
-                DirectoryCompare Pro is developed and supported from the United States. If you use our software from outside the US,
-                your data may be transferred to and processed in the US. By using DirectoryCompare Pro, you consent to this transfer.
-            </p>
-
-            <h2>Changes to This Policy</h2>
-            <p>
-                We may update this Privacy Policy occasionally. Changes will be posted on this page with an updated "Last Updated" date.
-                Continued use of DirectoryCompare Pro after changes constitutes acceptance of the new policy.
-            </p>
-
-            <h2>Contact Us</h2>
-            <p>
-                If you have questions about this Privacy Policy or how we handle your data, please contact us:
-            </p>
-            <ul>
-                <li><strong>Email:</strong> <a href="mailto:dircomparepro@gmail.com" style="color: #667eea; font-weight: 600;">dircomparepro@gmail.com</a></li>
-                <li><strong>GitHub:</strong> <a href="https://github.com/DirCompare-Pro/DirectoryComparePro/issues" target="_blank" style="color: #667eea; font-weight: 600;">Open an issue</a></li>
-            </ul>
-
-            <h2>Summary (TL;DR)</h2>
-            <div class="note">
-                <p><strong>What we collect:</strong></p>
-                <ul style="margin-bottom: 15px;">
-                    <li>Bug reports: Your name, email, machine ID (only if you submit feedback)</li>
-                    <li>License data: Machine ID (stored locally, never transmitted unless you submit bug report)</li>
-                </ul>
-
-                <p><strong>What we DON'T collect:</strong></p>
-                <ul style="margin-bottom: 15px;">
-                    <li>Your files, directory paths, usage analytics, crash reports (unless you submit manually)</li>
-                </ul>
-
-                <p><strong>How we use it:</strong></p>
-                <ul style="margin-bottom: 15px;">
-                    <li>Fix bugs, send reward license keys, provide support</li>
-                </ul>
-
-                <p><strong>Who we share with:</strong></p>
-                <ul>
-                    <li><strong>Nobody.</strong> We never share your data with third parties.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="footer">
+    <header class="hero">
         <div class="container">
-            <p><strong>DirectoryCompare Pro v1.01</strong></p>
-            <p>Released December 28, 2025</p>
-            <p style="margin-top: 15px;">
-                <a href="index.html">Home</a> |
-                <a href="download.html">Download</a> |
-                <a href="support.html">Support</a> |
-                <a href="privacy.html">Privacy Policy</a> |
-                <a href="https://github.com/DirCompare-Pro/DirectoryComparePro" target="_blank">GitHub</a>
-            </p>
-            <p style="margin-top: 15px;">
-                Email: <a href="mailto:dircomparepro@gmail.com">dircomparepro@gmail.com</a>
-            </p>
-            <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
-                &copy; 2025 DirectoryCompare Pro. All rights reserved.
+            <div class="eyebrow">Privacy and data handling</div>
+            <h1>Clearer privacy information, without vague wording.</h1>
+            <p>
+                This page summarizes how DirectoryCompare Pro handles local settings, licensing information, optional support submissions,
+                and remote-source workflows such as GitHub, web URL, or FTP/SFTP comparison.
             </p>
         </div>
-    </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Privacy summary</h2>
+                    <p>The product is designed primarily around local workflows. Most compare operations happen on your own machine, not through a hosted service.</p>
+                </div>
+
+                <article class="card">
+                    <h3>Most file comparison activity is local</h3>
+                    <p>
+                        DirectoryCompare Pro is not a cloud compare service. Local directory comparison, archive analysis, spreadsheet comparison,
+                        image diff, patch workflows, exports, bookmarks, sessions, and many other features run locally on your device.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>Licensing data may be machine-bound</h3>
+                    <p>
+                        The product uses machine-bound licensing for paid tiers. That means activation and entitlement logic can be tied to a machine identity
+                        or similar device-specific information, depending on the licensing workflow in use.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>Remote-source features are different from local-only use</h3>
+                    <p>
+                        If you compare GitHub repositories, web URLs, or FTP/SFTP sources, those workflows naturally involve communication with the relevant remote service.
+                        That is separate from local folder comparison.
+                    </p>
+                    <div class="note">
+                        <strong>In plain English:</strong> local compare work stays local; remote compare work has to contact the remote system you asked the app to use.
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Types of information involved</h2>
+                    <p>This is a practical summary of the kinds of data that may be stored or used while the product is running.</p>
+                </div>
+
+                <article class="card">
+                    <h3>Local configuration and workflow data</h3>
+                    <ul>
+                        <li>Window and interface preferences</li>
+                        <li>Session history and bookmarks</li>
+                        <li>Recent compare targets or related local settings</li>
+                        <li>Other app configuration needed to restore your workflow</li>
+                    </ul>
+                </article>
+
+                <article class="card">
+                    <h3>Licensing and activation information</h3>
+                    <ul>
+                        <li>Machine-bound licensing details for paid tiers</li>
+                        <li>Activation status and tier entitlements</li>
+                        <li>Subscription or expiry state where applicable</li>
+                        <li>Support information needed to help with license issues</li>
+                    </ul>
+                </article>
+
+                <article class="card">
+                    <h3>Optional support or bug-report information</h3>
+                    <ul>
+                        <li>Information you choose to send when requesting support</li>
+                        <li>Problem descriptions, reproduction steps, and similar troubleshooting details</li>
+                        <li>Contact information if you provide it</li>
+                        <li>Potential licensing context if required to resolve an activation issue</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Remote-source behavior</h2>
+                    <p>Some features work only because the app talks to external systems you selected.</p>
+                </div>
+
+                <article class="card">
+                    <h3>GitHub comparison</h3>
+                    <p>
+                        If you compare GitHub repositories, the app may use repository URLs, API requests, and—where relevant—authentication details needed to access the repository or avoid rate limits.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>Web URL comparison</h3>
+                    <p>
+                        If you compare against a web URL, the app must request content from that URL. That means normal network communication with the target site is part of the feature.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>FTP/SFTP comparison</h3>
+                    <p>
+                        If you compare remote file sources over FTP or SFTP, the app must use the connection information and credentials needed to access those systems.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+                <article class="card">
+                    <h3>Contact</h3>
+                    <p>
+                        For privacy or data-handling questions, contact
+                        <a href="mailto:dircomparepro@gmail.com"><code>dircomparepro@gmail.com</code></a>.
+                    </p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>
+                <strong>DirectoryCompare Pro</strong> •
+                <a href="index.html">Home</a> •
+                <a href="download.html">Download</a> •
+                <a href="support.html">Support</a> •
+                <a href="https://github.com/DirCompare-Pro/DirectoryComparePro" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </p>
+        </div>
+    </footer>
 </body>
 </html>

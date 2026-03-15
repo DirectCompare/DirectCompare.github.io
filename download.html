@@ -3,468 +3,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Download DirectoryCompare Pro v1.01 - Professional directory comparison tool for Windows and Linux.">
-    <title>Download - DirectoryCompare Pro</title>
+    <meta name="description" content="Download DirectoryCompare Pro for Windows and Linux. Start with the free tier, then upgrade for N-way, Git/GitHub, remote source comparison, and similarity search.">
+    <title>Download DirectoryCompare Pro</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg: #07111f;
+            --panel: #0f1b2d;
+            --panel-2: #13243a;
+            --text: #eaf2ff;
+            --text-dark: #132033;
+            --muted: #a9b8cf;
+            --line: rgba(255, 255, 255, 0.12);
+            --line-dark: rgba(19, 32, 51, 0.12);
+            --brand: #6d8cff;
+            --brand-2: #8c6dff;
+            --accent: #4ee1c1;
+            --success: #16c47f;
+            --warning: #ffb84d;
+            --danger: #ff6b7a;
         }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #f5f5f5;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(109, 140, 255, 0.18), transparent 30%),
+                linear-gradient(180deg, #081221 0%, #0b1526 40%, #f5f9ff 40%, #f5f9ff 100%);
         }
+
+        a { color: inherit; text-decoration: none; }
+        .container { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
 
         .nav {
-            background: white;
-            padding: 15px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 20; backdrop-filter: blur(14px);
+            background: rgba(7, 17, 31, 0.74); border-bottom: 1px solid var(--line);
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .nav-inner {
+            min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
         }
 
-        .nav-links a {
-            color: #333;
-            text-decoration: none;
-            margin-left: 30px;
-            font-weight: 500;
-            transition: color 0.2s;
+        .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; }
+
+        .brand-mark {
+            width: 38px; height: 38px; border-radius: 12px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            display: inline-flex; align-items: center; justify-content: center; color: white;
         }
 
-        .nav-links a:hover {
-            color: #667eea;
+        .nav-links { display: flex; align-items: center; gap: 22px; color: var(--muted); font-size: 0.96rem; }
+        .nav-links a:hover { color: white; }
+        .nav-links a[aria-current="page"] { color: white; font-weight: 700; }
+        :focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+
+        .nav-cta {
+            padding: 11px 18px; border-radius: 999px; color: white; font-weight: 700;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
         }
 
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
+        .hero { padding: 72px 0 42px; }
+
+        .eyebrow {
+            display: inline-flex; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px;
+            color: var(--accent); font-weight: 700; font-size: 0.92rem; margin-bottom: 18px;
+            background: rgba(255,255,255,0.04);
         }
 
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.2rem); line-height: 1.05; letter-spacing: -0.04em; margin-bottom: 16px;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+        .hero p { color: var(--muted); font-size: 1.08rem; max-width: 780px; }
+
+        .hero-meta {
+            display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px;
         }
 
-        .section {
-            background: white;
-            margin: 30px 0;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        .hero-meta span {
+            padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px;
+            background: rgba(255,255,255,0.04); color: var(--muted); font-size: 0.94rem;
         }
 
-        .section h2 {
-            color: #667eea;
-            font-size: 2em;
-            margin-bottom: 20px;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
+        .section { padding: 34px 0 72px; color: var(--text-dark); }
+        .section-header { max-width: 760px; margin-bottom: 28px; }
+        .section-header h2 { font-size: clamp(1.9rem, 3vw, 2.8rem); margin-bottom: 10px; letter-spacing: -0.03em; }
+        .section-header p { color: #5b6a82; }
+
+        .download-grid, .info-grid, .tier-grid, .verify-grid {
+            display: grid; gap: 22px;
         }
+
+        .download-grid { grid-template-columns: repeat(2, 1fr); }
+        .info-grid { grid-template-columns: repeat(3, 1fr); }
+        .tier-grid { grid-template-columns: repeat(4, 1fr); }
+        .verify-grid { grid-template-columns: repeat(2, 1fr); }
+
+        .card {
+            background: white; border: 1px solid var(--line-dark); border-radius: 20px; padding: 24px;
+            box-shadow: 0 18px 40px rgba(11, 21, 38, 0.06);
+        }
+
+        .card h3 { font-size: 1.2rem; margin-bottom: 10px; color: #0f1b2d; }
+        .card p, .card li { color: #5d6d86; }
+        .card ul, .card ol { padding-left: 18px; display: grid; gap: 8px; margin-top: 12px; }
 
         .download-card {
-            border: 2px solid #667eea;
-            border-radius: 8px;
-            padding: 30px;
-            margin: 20px 0;
-            background: #f9f9ff;
+            position: relative; border: 1px solid rgba(109, 140, 255, 0.28);
         }
 
-        .download-card h3 {
-            color: #667eea;
-            font-size: 1.5em;
-            margin-bottom: 15px;
+        .badge {
+            display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px;
+            background: rgba(109, 140, 255, 0.12); color: var(--brand); font-weight: 800; font-size: 0.84rem; margin-bottom: 14px;
         }
 
-        .download-btn {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 15px 40px;
-            font-size: 1.2em;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-top: 15px;
+        .file-box {
+            margin: 16px 0; padding: 16px; border-radius: 16px; background: #f6f9ff; border: 1px solid #e1ebff;
+            font-size: 0.95rem;
         }
 
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-            background: #764ba2;
+        .file-box strong { color: #0f1b2d; }
+
+        .btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 20px;
+            border-radius: 14px; font-weight: 800; transition: transform 0.18s ease;
         }
 
-        .file-info {
-            background: #f4f4f4;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 15px 0;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
+        .btn:hover { transform: translateY(-1px); }
+
+        .btn-primary {
+            color: white; background: linear-gradient(135deg, var(--brand), var(--brand-2));
         }
 
-        .checksum {
-            background: #fff;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin: 10px 0;
-            word-break: break-all;
-            font-family: 'Courier New', monospace;
-            font-size: 0.85em;
+        .btn-secondary {
+            color: #244899; background: #eef4ff; border: 1px solid #dbe6ff;
         }
 
-        .checksum-label {
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 5px;
-        }
-
-        code {
-            background: #f4f4f4;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Courier New', monospace;
-        }
-
+        code, pre { font-family: 'Courier New', monospace; }
+        code { background: #eef3fb; padding: 2px 6px; border-radius: 6px; }
         pre {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 20px;
-            border-radius: 5px;
-            overflow-x: auto;
-            margin: 15px 0;
+            margin-top: 12px; background: #0f1b2d; color: #dce8ff; padding: 16px; border-radius: 14px; overflow-x: auto;
         }
+
 
         .note {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 15px;
-            margin: 20px 0;
+            margin-top: 18px; background: #eef8ff; color: #24405f; border: 1px solid rgba(36,64,95,0.10);
+            border-radius: 18px; padding: 18px 20px;
         }
 
-        .note strong {
-            color: #856404;
+        .warn {
+            background: #fff8ea; color: #6f5316; border: 1px solid rgba(111,83,22,0.12);
         }
 
         .footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
+            color: #6d7d96; padding: 18px 0 56px; text-align: center; font-size: 0.95rem;
         }
 
-        .footer a {
-            color: #667eea;
-            text-decoration: none;
+        .footer a { color: #284a9e; font-weight: 700; }
+
+        @media (max-width: 1040px) {
+            .download-grid, .info-grid, .tier-grid, .verify-grid { grid-template-columns: 1fr; }
         }
 
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        ol, ul {
-            padding-left: 25px;
-            margin: 15px 0;
-        }
-
-        li {
-            margin: 10px 0;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            margin: 30px 0;
+        @media (max-width: 860px) {
+            .nav-inner { min-height: auto; padding: 14px 0; flex-wrap: wrap; }
+            .nav-links { width: 100%; flex-wrap: wrap; gap: 14px; justify-content: space-between; }
         }
     </style>
 </head>
 <body>
     <nav class="nav">
-        <div class="nav-container">
-            <div><strong>DirectoryCompare Pro</strong></div>
+        <div class="container nav-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark">DC</span>
+                <span>DirectoryCompare Pro</span>
+            </a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
-                <a href="download.html">Download</a>
+                <a href="download.html" aria-current="page">Download</a>
                 <a href="support.html">Support</a>
                 <a href="privacy.html">Privacy</a>
-                <a href="https://github.com/DirCompare-Pro/DirectoryComparePro" target="_blank">GitHub</a>
+                <a href="https://github.com/DirCompare-Pro/DirectoryComparePro" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="download.html" class="nav-cta">Download Free</a>
             </div>
         </div>
     </nav>
 
-    <div class="header">
-        <h1>Download DirectoryCompare Pro</h1>
-        <p>Version 1.01 - Static Build + Linux Support (December 28, 2025)</p>
-    </div>
-
-    <div class="container">
-        <div class="section">
-            <h2>Windows Download</h2>
-
-            <div class="download-card">
-                <h3>Windows Package (Fully Static)</h3>
-                <p>No installation required - extract and run. <strong>Zero DLL dependencies</strong> - fully static build. Includes optional batch installer for Start Menu + context menu integration.</p>
-
-                <div class="file-info">
-                    <strong>File:</strong> DirectoryComparePro-v1.01-Windows-STATIC.zip<br>
-                    <strong>Size:</strong> 6.4 MB (compressed) | 15.4 MB (executable)<br>
-                    <strong>Platform:</strong> Windows 10/11 (64-bit)<br>
-                    <strong>Contents:</strong> Standalone Executable + Documentation + Optional Installer<br>
-                    <strong>Dependencies:</strong> None - all libraries statically linked
-                </div>
-
-                <a href="https://github.com/DirCompare-Pro/DirectoryComparePro/releases/download/v1.01/DirectoryComparePro-v1.01-Windows.zip" class="download-btn">Download v1.01 for Windows</a>
-
-                <div class="checksum">
-                    <div class="checksum-label">SHA-256 Checksum:</div>
-                    <div>TBD - Generate after final upload</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Linux Download</h2>
-
-            <div class="download-card">
-                <h3>Linux Package (Ubuntu/Debian)</h3>
-                <p>Tested on Ubuntu 22.04+, Debian, and Kali Linux. Requires standard system libraries (installed via apt).</p>
-
-                <div class="file-info">
-                    <strong>File:</strong> DirectoryComparePro-v1.01-Linux.tar.gz<br>
-                    <strong>Size:</strong> 1.3 MB (compressed) | 3.4 MB (executable)<br>
-                    <strong>Platform:</strong> Linux x86_64 (64-bit)<br>
-                    <strong>Contents:</strong> Executable + Documentation + Install/Uninstall Scripts<br>
-                    <strong>Dependencies:</strong> libwxgtk3.2, libgit2, libarchive, libssl, libcurl
-                </div>
-
-                <a href="https://github.com/DirCompare-Pro/DirectoryComparePro/releases/download/Linux-v1.01/DirectoryComparePro-v1.01-Linux.tar.gz" class="download-btn">Download v1.01 for Linux</a>
-
-                <div class="checksum">
-                    <div class="checksum-label">SHA-256 Checksum:</div>
-                    <div>TBD - Generate after final upload</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Installation Instructions</h2>
-
-            <h3 style="color: #667eea; margin-bottom: 15px;">Windows - Quick Start</h3>
-            <ol>
-                <li>Download <code>DirectoryComparePro-v1.01-Windows-STATIC.zip</code></li>
-                <li>Extract to any folder (e.g., <code>C:\DirectoryComparePro</code> or <code>C:\Program Files\DirectoryComparePro</code>)</li>
-                <li>Run <code>DirectoryComparePro.exe</code> - works immediately with zero dependencies!</li>
-            </ol>
-
-            <h3 style="color: #667eea; margin-top: 30px; margin-bottom: 15px;">Windows - Optional Installation (Context Menu + Shortcuts)</h3>
-            <ol>
-                <li>After extracting, right-click <code>install.bat</code></li>
-                <li>Select "Run as administrator"</li>
-                <li>This will add:
-                    <ul style="margin-top: 10px;">
-                        <li>Context menu integration (right-click folders → "Compare with DirectoryCompare Pro")</li>
-                        <li>Start Menu shortcut</li>
-                        <li>Optional Desktop shortcut</li>
-                    </ul>
-                </li>
-                <li>To uninstall, run <code>uninstall.bat</code> as administrator</li>
-            </ol>
-
-            <h3 style="color: #667eea; margin-top: 30px; margin-bottom: 15px;">Linux - Installation</h3>
-            <ol>
-                <li>Download <code>DirectoryComparePro-v1.01-Linux.tar.gz</code></li>
-                <li>Extract the archive:
-                    <pre style="margin-top: 10px;">tar -xzf DirectoryComparePro-v1.01-Linux.tar.gz
-cd DirectoryComparePro-v1.01-Linux</pre>
-                </li>
-                <li>Install required dependencies (Ubuntu/Debian):
-                    <pre>sudo apt install libwxgtk3.2-1 libgit2-1.7 libarchive13 libssl3 libcurl4</pre>
-                </li>
-                <li>Run directly:
-                    <pre>./DirectoryComparePro</pre>
-                </li>
-                <li><strong>Optional:</strong> Install system-wide:
-                    <pre>sudo ./install.sh</pre>
-                    This adds the program to <code>/usr/local/bin</code> and creates a desktop entry.
-                </li>
-            </ol>
-
-            <h3 style="color: #667eea; margin-top: 30px; margin-bottom: 15px;">System Requirements</h3>
-            <div class="grid-2">
-                <div>
-                    <h4 style="color: #764ba2; margin-bottom: 10px;">Windows</h4>
-                    <ul>
-                        <li><strong>OS:</strong> Windows 10/11 (64-bit)</li>
-                        <li><strong>RAM:</strong> 2 GB minimum (4 GB recommended)</li>
-                        <li><strong>Disk:</strong> 20 MB free space</li>
-                        <li><strong>Dependencies:</strong> None - fully static binary</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 style="color: #764ba2; margin-bottom: 10px;">Linux</h4>
-                    <ul>
-                        <li><strong>OS:</strong> Ubuntu 22.04+, Debian, Kali (64-bit)</li>
-                        <li><strong>RAM:</strong> 2 GB minimum (4 GB recommended)</li>
-                        <li><strong>Disk:</strong> 20 MB free space</li>
-                        <li><strong>Dependencies:</strong> libwxgtk3.2, libgit2, libarchive, libssl, libcurl</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Verify File Integrity</h2>
-            <p>Always verify downloaded files using SHA-256 checksums to ensure they haven't been tampered with.</p>
-
-            <h3 style="color: #667eea; margin-top: 30px; margin-bottom: 15px;">Windows PowerShell</h3>
-            <pre>Get-FileHash -Algorithm SHA256 DirectoryComparePro-v1.01-Windows-STATIC.zip</pre>
-
-            <h3 style="color: #667eea; margin-top: 30px; margin-bottom: 15px;">Windows Command Prompt</h3>
-            <pre>certutil -hashfile DirectoryComparePro-v1.01-Windows-STATIC.zip SHA256</pre>
-
-            <h3 style="color: #667eea; margin-top: 30px; margin-bottom: 15px;">Linux/macOS</h3>
-            <pre>sha256sum DirectoryComparePro-v1.01-Linux.tar.gz</pre>
-
-            <h3 style="color: #667eea; margin-top: 30px; margin-bottom: 15px;">Expected Checksums</h3>
-            <div class="checksum">
-                <div class="checksum-label">DirectoryComparePro-v1.01-Windows-STATIC.zip:</div>
-                <div>TBD - Generate after final upload</div>
-            </div>
-            <div class="checksum" style="margin-top: 10px;">
-                <div class="checksum-label">DirectoryComparePro-v1.01-Linux.tar.gz:</div>
-                <div>TBD - Generate after final upload</div>
-            </div>
-
-            <p style="margin-top: 20px;">
-                <strong>Security Note:</strong> If the checksums don't match, do NOT run the file. Download again from the official source.
-            </p>
-        </div>
-
-        <div class="section">
-            <h2>What's Included</h2>
-
-            <div class="grid-2">
-                <div>
-                    <h3 style="color: #667eea; margin-bottom: 15px;">Windows Package Contains:</h3>
-                    <ul>
-                        <li><strong>DirectoryComparePro.exe</strong> - Main application (15.4 MB, fully static)</li>
-                        <li><strong>README.md</strong> - Full release notes and documentation</li>
-                        <li><strong>CHANGELOG.md</strong> - Complete version history</li>
-                        <li><strong>VERSION</strong> - Version identifier file</li>
-                        <li><strong>install.bat</strong> - Optional installer for context menu integration</li>
-                        <li><strong>uninstall.bat</strong> - Uninstaller for removing installed components</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 style="color: #667eea; margin-bottom: 15px;">Linux Package Contains:</h3>
-                    <ul>
-                        <li><strong>DirectoryComparePro</strong> - Main application (3.4 MB binary)</li>
-                        <li><strong>README.md</strong> - Full release notes and documentation</li>
-                        <li><strong>CHANGELOG.md</strong> - Complete version history</li>
-                        <li><strong>VERSION</strong> - Version identifier file</li>
-                        <li><strong>install.sh</strong> - Optional system-wide installer</li>
-                        <li><strong>uninstall.sh</strong> - Uninstaller script</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3 style="color: #667eea; margin-top: 30px; margin-bottom: 15px;">Features Included (100% Parity on Windows & Linux):</h3>
-            <ul>
-                <li>N-way directory comparison (2, 3, 4+ sources)</li>
-                <li>Git/GitHub integration (compare without checkout/cloning)</li>
-                <li>FTP/FTPS/SFTP support</li>
-                <li>Archive comparison (ZIP, TAR, 7Z, RAR, ISO, CAB, GZ, BZ2, XZ)</li>
-                <li>Similarity search (text and image)</li>
-                <li>3-way merge with conflict resolution</li>
-                <li>Export to CSV, HTML, JSON</li>
-                <li>Smart folder alignment</li>
-                <li>Keyboard shortcuts</li>
-                <li>Bookmark management</li>
-                <li>Enterprise RSA-2048 licensing (cross-platform keys)</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Release Notes</h2>
-
-            <h3 style="color: #667eea; margin-bottom: 15px;">Version 1.01 - December 28, 2025</h3>
-            <p><strong>Static Build + Linux Support</strong></p>
-            <ul>
-                <li><strong>Fully static Windows build</strong> - Zero DLL dependencies, single 15.4 MB executable</li>
-                <li><strong>Official Linux support</strong> - Ubuntu/Debian/Kali packages with full feature parity</li>
-                <li><strong>Cross-platform licensing</strong> - License keys work on both Windows and Linux</li>
-                <li><strong>Enhanced security</strong> - RSA-2048 machine-bound licensing with additional registry backups</li>
-                <li><strong>Bug fixes</strong> - Fixed type compatibility issues for cross-platform builds</li>
-            </ul>
-
-            <h3 style="color: #667eea; margin-top: 30px; margin-bottom: 15px;">Version 1.0.0 - December 25, 2025</h3>
-            <p><strong>Initial public release</strong></p>
-            <ul>
-                <li>N-way comparison engine (compare 2+ sources simultaneously)</li>
-                <li>Git/GitHub integration (compare without checkout/cloning)</li>
-                <li>FTP/FTPS/SFTP support (compare remote servers)</li>
-                <li>Archive comparison (10+ formats via libarchive)</li>
-                <li>Similarity search (text and image algorithms)</li>
-                <li>3-way merge with Myers diff algorithm</li>
-                <li>RSA-2048 licensing system (hardware-bound keys)</li>
-                <li>Export to CSV, HTML, JSON</li>
-                <li>Cross-platform foundation (100% Windows/Linux parity)</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Need Help?</h2>
-            <p>
-                If you encounter any issues downloading or installing DirectoryCompare Pro, please visit our
-                <a href="support.html" style="color: #667eea; font-weight: 600;">Support Page</a> or email us at
-                <a href="mailto:dircomparepro@gmail.com" style="color: #667eea; font-weight: 600;">dircomparepro@gmail.com</a>.
-            </p>
-        </div>
-    </div>
-
-    <div class="footer">
+    <header class="hero">
         <div class="container">
-            <p><strong>DirectoryCompare Pro v1.01</strong></p>
-            <p>Released December 28, 2025</p>
-            <p style="margin-top: 15px;">
-                <a href="index.html">Home</a> |
-                <a href="download.html">Download</a> |
-                <a href="support.html">Support</a> |
-                <a href="privacy.html">Privacy Policy</a> |
-                <a href="https://github.com/DirCompare-Pro/DirectoryComparePro" target="_blank">GitHub</a>
+            <div class="eyebrow">Download DirectoryCompare Pro</div>
+            <h1>Start with the free tier. Upgrade only when you need more.</h1>
+            <p>
+                DirectoryCompare Pro gives you a strong free compare workflow out of the box, plus a <strong>7-day full-featured trial</strong>
+                if you want to evaluate paid features before upgrading to N-way comparison, Git and GitHub sources, plugin viewers,
+                remote source comparison, and similarity search. The trial starts automatically on first launch — no sign-up required.
             </p>
-            <p style="margin-top: 15px;">
-                Email: <a href="mailto:dircomparepro@gmail.com">dircomparepro@gmail.com</a>
-            </p>
-            <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
-                &copy; 2025 DirectoryCompare Pro. All rights reserved.
+            <div class="hero-meta">
+                <span>Free 2-way compare</span>
+                <span>Windows + Linux</span>
+                <span>Version 1.03 — <a href="https://github.com/DirCompare-Pro/DirectoryComparePro/releases" style="color:var(--accent);font-weight:700;">View release notes</a></span>
+                <span>Standard+ for N-way, Git, GitHub</span>
+                <span>Premium+ for Web, FTP/SFTP, similarity</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Choose your download</h2>
+                    <p>Download the build for your platform, then use the free tier immediately. Licenses unlock additional capabilities inside the same application.</p>
+                </div>
+                <div class="download-grid">
+                    <article class="card download-card">
+                        <div class="badge">Windows</div>
+                        <h3>Windows download</h3>
+                        <p>Recommended for Windows 10/11 users who want the easiest path to install and test the free tier.</p>
+                        <div class="file-box">
+                            <strong>Suggested package:</strong> DirectoryComparePro-v1.03-Windows-Portable.zip<br>
+                            <strong>Platform:</strong> Windows 10/11 (64-bit)<br>
+                            <strong>Typical use:</strong> Download, extract, run, then unlock paid tiers in-app if needed.
+                        </div>
+                        <div class="btn-row">
+                            <a class="btn btn-primary" href="https://github.com/DirCompare-Pro/DirectoryComparePro/releases/download/v1.03/DirectoryComparePro-v1.03-Windows-Portable.zip">Download for Windows</a>
+                            <a class="btn btn-secondary" href="#install">Install notes</a>
+                        </div>
+                    </article>
+                    <article class="card download-card">
+                        <div class="badge">Linux</div>
+                        <h3>Linux download</h3>
+                        <p>For Linux users who want the same compare workflow on supported distributions and environments.</p>
+                        <div class="file-box">
+                            <strong>Suggested package:</strong> DirectoryComparePro-v1.03-Linux.tar.gz<br>
+                            <strong>Platform:</strong> Linux x86_64<br>
+                            <strong>Typical use:</strong> Download, extract, install dependencies if required, then run locally.<br>
+                            <strong>Requires:</strong> GTK 3, libarchive, libgit2, libcurl. See README.txt inside the archive for details.
+                        </div>
+                        <div class="btn-row">
+                            <a class="btn btn-primary" href="https://github.com/DirCompare-Pro/DirectoryComparePro/releases/download/v1.03/DirectoryComparePro-v1.03-Linux.tar.gz">Download for Linux</a>
+                            <a class="btn btn-secondary" href="#install">Install notes</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="section" style="padding-top: 0;" id="install">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Installation overview</h2>
+                    <p>Keep the download step simple: install once, start free, then upgrade inside the app if and when your workflow expands.</p>
+                </div>
+                <div class="info-grid">
+                    <article class="card">
+                        <h3>Windows quick start</h3>
+                        <ol>
+                            <li>Download the Windows ZIP package.</li>
+                            <li>Extract it to a folder you control.</li>
+                            <li>Run <code>DirectoryComparePro.exe</code>.</li>
+                            <li>Use the free tier immediately.</li>
+                        </ol>
+                    </article>
+                    <article class="card">
+                        <h3>Linux quick start</h3>
+                        <ol>
+                            <li>Download the Linux tarball.</li>
+                            <li>Extract it locally.</li>
+                            <li>Install any required system libraries if your build needs them.</li>
+                            <li>Run the application from the extracted folder.</li>
+                        </ol>
+                    </article>
+                    <article class="card">
+                        <h3>License workflow</h3>
+                        <ol>
+                            <li>Start with the free feature set.</li>
+                            <li>When you need Standard or Premium features, purchase or apply a license.</li>
+                            <li>Activate it through <code>Help → Register</code>.</li>
+                            <li>Unlocked features become available in the same app.</li>
+                        </ol>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>What each tier unlocks</h2>
+                    <p>The clearest way to think about the product is: free for strong everyday compare, Standard ($39/yr) for multi-source workflows, Premium ($79/yr) for remote and similarity workflows, and Lifetime ($199) for one-time Premium-level access.</p>
+                </div>
+                <div class="tier-grid">
+                    <article class="card">
+                        <h3>Free tier <span style="font-size:0.85rem;font-weight:600;color:#5d6d86;">Free forever</span></h3>
+                        <ul>
+                            <li>2-way directory comparison</li>
+                            <li>Text + hex diff viewer</li>
+                            <li>Archive, CSV, Excel, image compare</li>
+                            <li>Patch support and exports</li>
+                            <li>Sessions, bookmarks, sync preview, versioning</li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h3>Standard+ <span style="font-size:0.85rem;font-weight:600;color:#5d6d86;">$39/yr</span></h3>
+                        <ul>
+                            <li>N-way comparison and N-way merge</li>
+                            <li>Git branch and commit compare</li>
+                            <li>GitHub repository compare</li>
+                            <li>Plugin viewers</li>
+                            <li>Dark/light theme and power-user workflows</li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h3>Premium+ <span style="font-size:0.85rem;font-weight:600;color:#5d6d86;">$79/yr</span></h3>
+                        <ul>
+                            <li>Web URL comparison</li>
+                            <li>FTP/SFTP comparison</li>
+                            <li>Similarity search</li>
+                            <li>Duplicate detection workflows</li>
+                            <li>Advanced remote and content-matching use cases</li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h3>Lifetime <span style="font-size:0.85rem;font-weight:600;color:#5d6d86;">$199 one-time</span></h3>
+                        <ul>
+                            <li>All Premium features</li>
+                            <li>Single purchase — no annual renewal</li>
+                            <li>Ideal for long-term heavy use</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Integrity checks and release housekeeping</h2>
+                    <p>If you publish checksums, keep them accurate and visible. If you haven’t generated them yet, don’t pretend you have.</p>
+                </div>
+                <div class="verify-grid">
+                    <article class="card">
+                        <h3>Windows checksum command</h3>
+                        <pre>Get-FileHash -Algorithm SHA256 DirectoryComparePro-v1.03-Windows-Portable.zip</pre>
+                        <div class="note">A matching checksum file is also published in the release assets as <code>DirectoryComparePro-v1.03-Windows.sha256</code>.</div>
+                    </article>
+                    <article class="card">
+                        <h3>Linux checksum command</h3>
+                        <pre>sha256sum DirectoryComparePro-v1.03-Linux.tar.gz</pre>
+                        <div class="note">A matching checksum file is also published in the release assets as <code>DirectoryComparePro-v1.03-Linux.sha256</code>.</div>
+                    </article>
+                </div>
+                <div class="note warn">
+                    <strong>Important:</strong> This redesign intentionally avoids fake checksum values. The v1.03 release includes downloadable <code>.sha256</code> files, and you can add the exact hash strings here once you want them displayed inline on the page.
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>
+                <strong>DirectoryCompare Pro</strong> •
+                <a href="index.html">Home</a> •
+                <a href="support.html">Support</a> •
+                <a href="privacy.html">Privacy</a> •
+                <a href="https://github.com/DirCompare-Pro/DirectoryComparePro" target="_blank" rel="noopener noreferrer">GitHub</a>
             </p>
         </div>
-    </div>
+    </footer>
 </body>
 </html>
-
-
