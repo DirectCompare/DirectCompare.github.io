@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DirectoryCompare Pro v1.03 - Full feature details. Professional cross-platform directory comparison with N-way compare, Git/GitHub integration, filter toolbar, per-row copy, and more.">
+    <title>DirectoryCompare Pro - Full Feature Details</title>
+    <link rel="canonical" href="https://directorycompare-pro.com/features.html">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header .version {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .header .tagline {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: white;
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            transition: box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .feature-card h3 {
+            color: #764ba2;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .feature-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-card li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .quick-start {
+            background: #f9f9f9;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            margin: 20px 0;
+        }
+
+        .quick-start h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .quick-start ol {
+            padding-left: 20px;
+        }
+
+        .quick-start li {
+            margin: 10px 0;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .nav {
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <div><strong>DirectoryCompare Pro</strong></div>
+            <div class="nav-links">
+                <a href="index.html">&larr; Back to main site</a>
+                <a href="index.html">Home</a>
+                <a href="download.html">Download</a>
+                <a href="support.html">Support</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="https://github.com/DirCompare-Pro/DirectoryComparePro" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header">
+        <h1>DirectoryCompare Pro</h1>
+        <div class="version">Version 1.03</div>
+        <div class="tagline">Professional cross-platform directory comparison - full feature details</div>
+        <a href="download.html" class="download-btn">Download v1.03 Free</a>
+        <div style="margin-top: 15px; font-size: 0.9em; opacity: 0.8;">
+            Available for Windows &amp; Linux | No DLL dependencies | Fully portable
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>Why DirectoryCompare Pro?</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">
+                Compare directories from <strong>any source</strong> - local drives, GitHub repositories, Git branches,
+                FTP servers, and archives - all in one powerful tool. Perfect for developers, system administrators,
+                and power users who need more than basic file comparison.
+            </p>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">N-Way</div>
+                    <div class="stat-label">Compare 2, 3, 4+ sources</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Archive formats supported</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">Zero</div>
+                    <div class="stat-label">External dependencies</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Cross-platform parity</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Core Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>N-Way Comparison</h3>
+                    <ul>
+                        <li>Compare 2, 3, 4+ directories simultaneously</li>
+                        <li>Dynamic column generation</li>
+                        <li>Identify files unique to each source</li>
+                        <li>Find common files across all sources</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Git &amp; GitHub Integration</h3>
+                    <ul>
+                        <li>Compare branches without checkout</li>
+                        <li>Compare repos without cloning</li>
+                        <li>GitHub Trees API integration</li>
+                        <li>Private repository support</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Archive Support</h3>
+                    <ul>
+                        <li>ZIP, TAR, 7Z, RAR, ISO, CAB</li>
+                        <li>GZ, BZ2, XZ compression</li>
+                        <li>Password-protected archives</li>
+                        <li>No extraction required</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>FTP/FTPS/SFTP</h3>
+                    <ul>
+                        <li>Compare remote servers directly</li>
+                        <li>Secure protocols (FTPS, SFTP)</li>
+                        <li>No manual downloads needed</li>
+                        <li>Credential management</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Similarity Search</h3>
+                    <ul>
+                        <li>Find duplicate files</li>
+                        <li>Text similarity (Jaccard)</li>
+                        <li>Image similarity (dHash, aHash)</li>
+                        <li>Content hashing (SHA-256)</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>3-Way Merge</h3>
+                    <ul>
+                        <li>Conflict resolution UI</li>
+                        <li>Myers diff algorithm</li>
+                        <li>Side-by-side comparison</li>
+                        <li>Inline editing support</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Smart Features</h3>
+                    <ul>
+                        <li>Automatic folder alignment</li>
+                        <li>Syntax highlighting</li>
+                        <li>Keyboard shortcuts</li>
+                        <li>Bookmark management</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Export &amp; Productivity</h3>
+                    <ul>
+                        <li>CSV, HTML, JSON export</li>
+                        <li>Advanced filtering (wildcards, regex)</li>
+                        <li>Recent history tracking</li>
+                        <li>Comprehensive reports</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>New in v1.03</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Filter Toolbar</h3>
+                    <p>Toggle results between All / Diffs / Same / Minor with one click. Instantly focus on what matters.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Per-Row Copy Arrows</h3>
+                    <p>Copy individual files left, right, or both ways directly from the results tree. No dialog needed.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Status Bar</h3>
+                    <p>Live diff count breakdown (different / minor / identical / missing) and disk free space per source.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Plugin File Viewers</h3>
+                    <p>Preview STL, OBJ, WAV, and ACF files directly in the diff viewer. Standard tier and above.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>License Expiry Notifications</h3>
+                    <p>30-day advance warning at startup. Clear explanation if a key expires and the app downgrades to Basic.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Diff Viewer Load Time</h3>
+                    <p>Load time shown in the line-detail bar so you know exactly how long formatting took.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Quick Start</h2>
+
+            <div class="quick-start">
+                <h3>Compare Two or More Directories</h3>
+                <ol>
+                    <li>Launch DirectoryCompare Pro</li>
+                    <li>Click <strong>Add Source</strong> and select your first folder</li>
+                    <li>Click <strong>Add Source</strong> again for each additional source (local, Git, GitHub, FTP, or archive)</li>
+                    <li>Click <strong>Compare</strong></li>
+                    <li>Use the filter toolbar to show All / Diffs / Same / Minor</li>
+                    <li>Double-click any file to see the diff — or use the Actions column to copy files across</li>
+                </ol>
+            </div>
+
+            <div class="quick-start">
+                <h3>GitHub Repository Comparison</h3>
+                <ol>
+                    <li>Launch DirectoryCompare Pro</li>
+                    <li>Click <strong>Add Source</strong> and select <strong>GitHub</strong></li>
+                    <li>Enter the GitHub URL (e.g., <code>https://github.com/owner/repo</code>)</li>
+                    <li>(Optional) Set an authentication token in Settings for private repos</li>
+                    <li>Add any other sources, then click <strong>Compare</strong></li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>What's Different from Other Tools?</h2>
+            <ul style="font-size: 1.1em; line-height: 2;">
+                <li><strong>Multi-source comparison:</strong> Compare GitHub repos, local folders, archives, and FTP servers all at once</li>
+                <li><strong>No cloning/checkout required:</strong> Compare Git branches and GitHub repos directly via API</li>
+                <li><strong>Zero dependencies:</strong> Fully static builds - just download and run</li>
+                <li><strong>Enterprise licensing:</strong> RSA-2048 hardware-bound license system with offline activation</li>
+                <li><strong>True cross-platform:</strong> 100% feature parity between Windows and Linux - all features work identically</li>
+                <li><strong>Professional-grade:</strong> Built with C++17, wxWidgets, libgit2, and libarchive</li>
+                <li><strong>Free tier beats the competition:</strong> Basic includes everything Beyond Compare charges for - 2-way compare, merge, archives, image diff.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>System Requirements</h2>
+            <div style="font-size: 1.1em;">
+                <p><strong>Windows:</strong></p>
+                <ul>
+                    <li>Windows 10/11 (64-bit)</li>
+                    <li>2 GB RAM minimum (4 GB recommended)</li>
+                    <li>20 MB disk space</li>
+                    <li>No additional dependencies required - fully static build</li>
+                </ul>
+                <p style="margin-top: 20px;"><strong>Linux:</strong></p>
+                <ul>
+                    <li>Ubuntu 22.04+, Debian, Kali, or compatible (64-bit)</li>
+                    <li>2 GB RAM minimum (4 GB recommended)</li>
+                    <li>20 MB disk space</li>
+                    <li>Requires: libwxgtk3.2, libgit2, libarchive, libssl, libcurl</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Licensing &amp; Pricing</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">
+                DirectoryCompare Pro offers multiple licensing tiers to suit your needs:
+            </p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Basic (Free)</h3>
+                    <p>Everything you need for everyday comparison - 2-way compare, merge, archive, image diff, full exports. Free forever.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Trial (7 days)</h3>
+                    <p>Full Premium features, time-limited. No credit card required.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Standard ($39/year)</h3>
+                    <p>N-way comparison, N-way merge, GitHub and Git integration - everything the competition can't do.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Premium ($79/year)</h3>
+                    <p>Unlimited N-way sources, web and FTP comparison, similarity search, priority support.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Lifetime ($199 one-time)</h3>
+                    <p>All current & upcoming Premium features forever, one-time payment.</p>
+                </div>
+            </div>
+            <p style="margin-top: 20px; text-align: center;">
+                See in-app Registration dialog for details and activation.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Built With</h2>
+            <ul style="font-size: 1.1em; line-height: 2;">
+                <li><strong>C++17</strong> - Modern C++ standard</li>
+                <li><strong>wxWidgets 3.2.8</strong> - Cross-platform GUI framework</li>
+                <li><strong>libgit2</strong> - Git integration</li>
+                <li><strong>libarchive</strong> - Multi-format archive support</li>
+                <li><strong>OpenSSL</strong> - Cryptography and hashing</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p><strong>DirectoryCompare Pro v1.03</strong></p>
+            <p>Released 2026</p>
+            <p style="margin-top: 15px;">
+                <a href="download.html">Download</a> |
+                <a href="support.html">Support</a> |
+                <a href="privacy.html">Privacy Policy</a> |
+                <a href="https://github.com/DirCompare-Pro/DirectoryComparePro" target="_blank">GitHub</a>
+            </p>
+            <p style="margin-top: 15px;">
+                Guides:
+                <a href="git-branch-compare.html">Compare Git branches</a> |
+                <a href="beyond-compare-alternative.html">Beyond Compare alternative</a> |
+                <a href="nway-folder-comparison.html">N-way folder comparison</a>
+            </p>
+            <p style="margin-top: 15px;">
+                Email: <a href="mailto:dircomparepro@gmail.com">dircomparepro@gmail.com</a>
+            </p>
+            <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
+                &copy; 2026 DirectoryCompare Pro. All rights reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

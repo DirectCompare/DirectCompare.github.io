@@ -26,6 +26,12 @@
   </url>
 
   <url>
+    <loc>https://directorycompare-pro.com/features.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://directorycompare-pro.com/git-branch-compare.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
