@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compare multiple folders at once with DirectoryCompare Pro. N-way folder comparison supports 2, 3, 4+ sources - local, Git, GitHub, archives, and FTP in one view.">
+    <title>N-Way Folder Comparison - Compare Multiple Folders at Once</title>
+    <style>
+        :root {
+            --bg: #07111f;
+            --panel: #0f1b2d;
+            --panel-2: #13243a;
+            --panel-3: #f8fbff;
+            --text: #eaf2ff;
+            --text-dark: #132033;
+            --muted: #a9b8cf;
+            --line: rgba(255, 255, 255, 0.12);
+            --line-dark: rgba(19, 32, 51, 0.12);
+            --brand: #6d8cff;
+            --brand-2: #8c6dff;
+            --accent: #4ee1c1;
+            --success: #16c47f;
+            --warning: #ffb84d;
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+            --radius: 20px;
+            --max-width: 1180px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(109, 140, 255, 0.18), transparent 30%),
+                radial-gradient(circle at top right, rgba(78, 225, 193, 0.10), transparent 24%),
+                linear-gradient(180deg, #081221 0%, #0b1526 40%, #f5f9ff 40%, #f5f9ff 100%);
+            min-height: 100vh;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        .container { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+
+        .nav {
+            position: sticky; top: 0; z-index: 20; backdrop-filter: blur(14px);
+            background: rgba(7, 17, 31, 0.74); border-bottom: 1px solid var(--line);
+        }
+
+        .nav-inner {
+            min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+        }
+
+        .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; }
+
+        .brand-mark {
+            width: 38px; height: 38px; border-radius: 12px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            display: inline-flex; align-items: center; justify-content: center; color: white;
+        }
+
+        .nav-links { display: flex; align-items: center; gap: 22px; color: var(--muted); font-size: 0.96rem; }
+        .nav-links a:hover { color: white; }
+        .nav-links a[aria-current="page"] { color: white; font-weight: 700; }
+        :focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+
+        .nav-cta {
+            padding: 11px 18px; border-radius: 999px; color: white; font-weight: 700;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        }
+
+        .hero { padding: 72px 0 56px; }
+
+        .eyebrow {
+            display: inline-flex; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px;
+            color: var(--accent); font-weight: 700; font-size: 0.92rem; margin-bottom: 18px;
+            background: rgba(255,255,255,0.04);
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 4.5vw, 3.8rem); line-height: 1.08; letter-spacing: -0.04em; margin-bottom: 20px;
+        }
+
+        .hero p { color: var(--muted); font-size: 1.08rem; max-width: 760px; line-height: 1.7; }
+
+        .hero-meta {
+            display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px;
+        }
+
+        .hero-meta span {
+            padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px;
+            background: rgba(255,255,255,0.04); color: var(--muted); font-size: 0.94rem;
+        }
+
+        .btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 24px;
+            border-radius: 14px; font-weight: 800; transition: transform 0.18s ease; font-size: 1rem;
+        }
+
+        .btn:hover { transform: translateY(-1px); }
+
+        .btn-primary {
+            color: white; background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        }
+
+        .btn-secondary {
+            color: #244899; background: #eef4ff; border: 1px solid #dbe6ff;
+        }
+
+        .section { padding: 34px 0 72px; color: var(--text-dark); }
+        .section-header { max-width: 760px; margin-bottom: 32px; }
+        .section-header h2 { font-size: clamp(1.7rem, 2.8vw, 2.5rem); margin-bottom: 10px; letter-spacing: -0.03em; color: var(--text-dark); }
+        .section-header p { color: #5b6a82; font-size: 1.04rem; }
+
+        .card {
+            background: white; border: 1px solid var(--line-dark); border-radius: 20px; padding: 28px;
+            box-shadow: 0 18px 40px rgba(11, 21, 38, 0.06);
+        }
+
+        .card h3 { font-size: 1.18rem; margin-bottom: 10px; color: #0f1b2d; }
+        .card p { color: #5d6d86; margin-bottom: 10px; }
+        .card ul { padding-left: 18px; display: grid; gap: 8px; margin-top: 10px; }
+        .card li { color: #5d6d86; }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+        .use-case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+        .two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+
+        .badge {
+            display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px;
+            background: rgba(109, 140, 255, 0.12); color: var(--brand); font-weight: 800; font-size: 0.84rem; margin-bottom: 14px;
+        }
+
+        .badge-green {
+            background: rgba(22, 196, 127, 0.12); color: #0e8c5a;
+        }
+
+        .badge-amber {
+            background: rgba(255, 184, 77, 0.15); color: #8a5a00;
+        }
+
+        .badge-red {
+            background: rgba(255, 107, 122, 0.12); color: #a52030;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(109,140,255,0.08), rgba(78,225,193,0.06));
+            border: 1px solid rgba(109,140,255,0.20); border-radius: 20px; padding: 32px; margin: 32px 0;
+        }
+
+        .highlight-box h3 { font-size: 1.25rem; color: #0f1b2d; margin-bottom: 12px; }
+        .highlight-box p { color: #5d6d86; margin-bottom: 12px; }
+
+        /* Minority diff visualisation */
+        .diff-demo {
+            background: white; border: 1px solid var(--line-dark); border-radius: 20px; overflow: hidden;
+            box-shadow: 0 18px 40px rgba(11, 21, 38, 0.06);
+        }
+
+        .diff-demo-header {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; background: #f0f5ff;
+            border-bottom: 1px solid var(--line-dark); font-weight: 700; font-size: 0.9rem;
+            color: #0f1b2d;
+        }
+
+        .diff-demo-header span, .diff-row span { padding: 10px 14px; }
+
+        .diff-row {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; border-bottom: 1px solid var(--line-dark);
+            font-size: 0.92rem;
+        }
+
+        .diff-row:last-child { border-bottom: none; }
+
+        .diff-row span:first-child { color: #0f1b2d; font-weight: 600; }
+        .diff-row span { color: #5d6d86; }
+
+        .cell-same { background: rgba(22,196,127,0.07); color: #0e8c5a !important; font-weight: 700 !important; }
+        .cell-diff { background: rgba(255,107,122,0.10); color: #a52030 !important; font-weight: 700 !important; }
+        .cell-missing { background: rgba(255,184,77,0.12); color: #8a5a00 !important; font-weight: 700 !important; }
+        .cell-outlier { background: rgba(109,140,255,0.14); color: #244899 !important; font-weight: 800 !important; }
+
+        /* Filter toolbar mock */
+        .filter-toolbar {
+            display: flex; gap: 10px; flex-wrap: wrap; margin: 18px 0;
+        }
+
+        .filter-btn {
+            padding: 8px 18px; border-radius: 999px; font-weight: 700; font-size: 0.9rem;
+            border: 1px solid var(--line-dark); background: white; color: #5d6d86; cursor: default;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: white; border-color: transparent;
+        }
+
+        .faq-list { display: grid; gap: 18px; }
+
+        .faq-item { background: white; border: 1px solid var(--line-dark); border-radius: 16px; padding: 24px; }
+        .faq-item h3 { font-size: 1.05rem; color: #0f1b2d; margin-bottom: 8px; }
+        .faq-item p { color: #5d6d86; }
+
+        .cta-band {
+            background: linear-gradient(135deg, var(--panel), var(--panel-2));
+            border-radius: 24px; padding: 48px; text-align: center; margin: 32px 0;
+            border: 1px solid var(--line); color: var(--text);
+        }
+
+        .cta-band h2 { font-size: clamp(1.6rem, 2.5vw, 2.2rem); margin-bottom: 12px; letter-spacing: -0.03em; }
+        .cta-band p { color: var(--muted); margin-bottom: 24px; }
+
+        .footer {
+            color: #6d7d96; padding: 18px 0 56px; text-align: center; font-size: 0.95rem;
+        }
+
+        .footer a { color: #284a9e; font-weight: 700; }
+
+        code { font-family: 'Courier New', monospace; background: #eef3fb; padding: 2px 6px; border-radius: 6px; color: #244899; }
+
+        @media (max-width: 1040px) {
+            .feature-grid, .use-case-grid { grid-template-columns: repeat(2, 1fr); }
+            .two-col { grid-template-columns: 1fr; }
+            .diff-demo-header, .diff-row { grid-template-columns: 2fr 1fr 1fr 1fr; font-size: 0.85rem; }
+        }
+
+        @media (max-width: 640px) {
+            .feature-grid, .use-case-grid, .two-col { grid-template-columns: 1fr; }
+            .diff-demo-header, .diff-row { grid-template-columns: 1.5fr 1fr 1fr 1fr; }
+        }
+
+        @media (max-width: 860px) {
+            .nav-inner { min-height: auto; padding: 14px 0; flex-wrap: wrap; }
+            .nav-links { width: 100%; flex-wrap: wrap; gap: 14px; justify-content: space-between; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <div class="container nav-inner">
+        <a href="index.html" class="brand">
+            <span class="brand-mark">DC</span>
+            <span>DirectoryCompare Pro</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="download.html">Download</a>
+            <a href="support.html">Support</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="https://github.com/DirCompare-Pro/DirectoryComparePro" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="download.html" class="nav-cta">Download Free</a>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="container">
+        <div class="eyebrow">N-Way Folder Comparison</div>
+        <h1>Compare multiple folders at once</h1>
+        <p>
+            You have three versions of a directory - dev, staging, and production. Or v1, v2, and a v3 backup.
+            Every other tool forces you to do it two at a time, run the comparison twice, and reconcile the
+            results yourself. DirectoryCompare Pro lets you load all three (or four, or more) at once and
+            see the full picture in a single view.
+        </p>
+        <div class="hero-meta">
+            <span>2, 3, 4+ sources simultaneously</span>
+            <span>Local / Git / GitHub / Archive / FTP</span>
+            <span>Standard tier - $39/yr or 7-day free trial</span>
+            <span>Windows 10/11 and Linux x86_64</span>
+        </div>
+        <div class="btn-row">
+            <a href="download.html" class="btn btn-primary">Try N-way comparison free</a>
+            <a href="download.html" class="btn btn-secondary">Download now</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>How N-way folder comparison works</h2>
+                <p>Add your sources, click Compare, and see a consolidated result showing the status of every file across all sources.</p>
+            </div>
+            <div class="two-col">
+                <div>
+                    <div class="card" style="margin-bottom: 22px;">
+                        <h3>Add any combination of sources</h3>
+                        <p>Each source can be a different type. Mix and match freely:</p>
+                        <ul>
+                            <li>Local folders on your machine or a network drive</li>
+                            <li>Git branches (read directly via libgit2, no checkout)</li>
+                            <li>GitHub repositories via the REST API</li>
+                            <li>Archives: ZIP, TAR, 7Z, RAR, ISO</li>
+                            <li>FTP/SFTP remote paths (Premium tier)</li>
+                            <li>Web URL sources (Premium tier)</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>One consolidated result</h3>
+                        <p>
+                            The results view shows every file once, with a status column per source. You can see
+                            at a glance which sources have the file, whether it differs, and which source is the outlier
+                            when most agree but one does not.
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Example: three-folder comparison</h3>
+                    <p style="margin-bottom:14px;">Here is what a 3-way comparison result looks like. The <span style="color:#244899;font-weight:700;">outlier</span> column shows where one source differs from the other two.</p>
+                    <div class="diff-demo">
+                        <div class="diff-demo-header">
+                            <span>File</span>
+                            <span>Dev</span>
+                            <span>Staging</span>
+                            <span>Prod</span>
+                        </div>
+                        <div class="diff-row">
+                            <span>config/settings.json</span>
+                            <span class="cell-same">Same</span>
+                            <span class="cell-same">Same</span>
+                            <span class="cell-outlier">Different</span>
+                        </div>
+                        <div class="diff-row">
+                            <span>src/app.js</span>
+                            <span class="cell-same">Same</span>
+                            <span class="cell-same">Same</span>
+                            <span class="cell-same">Same</span>
+                        </div>
+                        <div class="diff-row">
+                            <span>src/worker.js</span>
+                            <span class="cell-outlier">Different</span>
+                            <span class="cell-same">Same</span>
+                            <span class="cell-same">Same</span>
+                        </div>
+                        <div class="diff-row">
+                            <span>logs/debug.log</span>
+                            <span class="cell-same">Present</span>
+                            <span class="cell-missing">Missing</span>
+                            <span class="cell-missing">Missing</span>
+                        </div>
+                        <div class="diff-row">
+                            <span>dist/bundle.min.js</span>
+                            <span class="cell-missing">Missing</span>
+                            <span class="cell-same">Present</span>
+                            <span class="cell-same">Present</span>
+                        </div>
+                    </div>
+                    <p style="margin-top:12px;font-size:0.9rem;color:#6d7d96;">The blue cell marks the outlier - the source that disagrees with the majority.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Minority difference highlighting</h2>
+                <p>When most sources agree and one does not, DirectoryCompare Pro flags the outlier automatically.</p>
+            </div>
+            <div class="highlight-box">
+                <h3>What is minority difference highlighting?</h3>
+                <p>
+                    In a 4-way comparison, if three sources have identical content for a file and one source has a
+                    different version, that one source is the minority. DirectoryCompare Pro detects this pattern and
+                    flags the outlier source directly in the results view.
+                </p>
+                <p>
+                    This is useful for deployment comparisons where you expect dev, staging, and prod to match a
+                    release candidate, and you want to immediately see which environment has drifted. Instead of reading
+                    through every row, the outlier is already highlighted for you.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Filter toolbar: cut through the noise</h2>
+                <p>Large directory comparisons can produce hundreds of rows. The filter toolbar lets you focus on what matters.</p>
+            </div>
+            <div class="card">
+                <h3>Filter modes</h3>
+                <div class="filter-toolbar" aria-label="Example filter toolbar - decorative">
+                    <span class="filter-btn active">All files</span>
+                    <span class="filter-btn">Differences only</span>
+                    <span class="filter-btn">Identical only</span>
+                    <span class="filter-btn">Minor differences</span>
+                </div>
+                <ul>
+                    <li><strong>All files:</strong> the complete unfiltered result, every file in every source.</li>
+                    <li><strong>Differences only:</strong> shows only rows where at least one source disagrees. The fastest way to find what changed.</li>
+                    <li><strong>Identical only:</strong> confirms which files are the same across all sources - useful for verifying a sync.</li>
+                    <li><strong>Minor differences:</strong> isolates rows flagged as minor (whitespace, line endings, timestamps) so you can dismiss them separately from meaningful changes.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Per-row copy arrows</h2>
+                <p>Resolving differences is a one-click operation per file, not a separate merge step.</p>
+            </div>
+            <div class="two-col">
+                <div class="card">
+                    <h3>Copy to resolve a difference</h3>
+                    <p>Each row in the results view has copy action arrows. Click the arrow to copy a file from one source to another. You control the direction: left-to-right, right-to-left, or broadcast from the authoritative source to all others.</p>
+                    <p>This is useful when you have identified a production config that drifted and you want to overwrite it from the staging version in a single click.</p>
+                </div>
+                <div class="card">
+                    <h3>Open in diff viewer</h3>
+                    <p>Double-click any file row to open it in the full diff viewer. For N-way sources, the diff viewer shows all versions side by side with per-line highlighting. You can see exactly which lines differ between each pair of sources.</p>
+                    <p>Plugin viewers extend this to STL/OBJ (3D geometry), WAV (audio waveform), and ACF (audio config) files.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Use cases for N-way folder comparison</h2>
+            </div>
+            <div class="use-case-grid">
+                <div class="card">
+                    <div class="badge badge-green">Deployment</div>
+                    <h3>Dev / staging / prod</h3>
+                    <p>The classic three-environment deployment check. Load all three as sources and instantly see which files have drifted between environments. Filter to Differences to focus on what needs syncing.</p>
+                </div>
+                <div class="card">
+                    <div class="badge badge-amber">Backups</div>
+                    <h3>Backup verification</h3>
+                    <p>Compare your live directory against two or three backup snapshots simultaneously. Confirm which backup contains the version of a file you need, without running multiple sequential comparisons.</p>
+                </div>
+                <div class="card">
+                    <div class="badge">Git branches</div>
+                    <h3>Branch divergence</h3>
+                    <p>Add <code>main</code>, <code>develop</code>, and a feature branch as three sources. See which files have changed in each branch and identify merge conflicts before they become a problem.</p>
+                </div>
+                <div class="card">
+                    <div class="badge badge-red">Audit</div>
+                    <h3>Release verification</h3>
+                    <p>Compare a Git tag, a build output folder, and a production deployment archive all at once. Verify that what shipped matches the source that was tagged for the release.</p>
+                </div>
+                <div class="card">
+                    <div class="badge">Archives</div>
+                    <h3>Multi-version archive diff</h3>
+                    <p>Add v1.0.zip, v1.1.zip, and v2.0.zip as sources. Track how a distributed package evolved across versions without extracting each archive manually.</p>
+                </div>
+                <div class="card">
+                    <div class="badge badge-green">Teams</div>
+                    <h3>Parallel workstream merge</h3>
+                    <p>When two developers have been working in separate local copies of the same folder, load both copies plus the shared baseline as a 3-way comparison to see what changed on each side.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="cta-band">
+                <h2>Compare three folders at once - free for 7 days</h2>
+                <p>N-way comparison is available on the Standard tier. Full 7-day trial starts automatically on first launch, no sign-up required.</p>
+                <a href="download.html" class="btn btn-primary">Download DirectoryCompare Pro</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently asked questions</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3>How many folders can I compare at once?</h3>
+                    <p>There is no fixed limit. DirectoryCompare Pro supports arbitrary N-way comparison - you can add 2, 3, 4, or more sources. Practical limits are determined by your machine's available memory and the size of the folders being compared. Most users work with 2 to 5 sources in a single comparison session.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I mix local folders with Git branches?</h3>
+                    <p>Yes. Each source is configured independently, so you can add a local folder as source 1, a Git branch as source 2, and a GitHub repository as source 3 - all in the same comparison. The source types are completely interchangeable.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What is minority difference highlighting?</h3>
+                    <p>When you compare three or more sources and most of them have the same version of a file but one source has a different version, DirectoryCompare Pro highlights the outlier source in that row. This makes it easy to spot the one environment or branch that has drifted, without reading through every cell in the results grid.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is there a limit on folder size?</h3>
+                    <p>There is no hard file count limit enforced by the application. Very large directories (hundreds of thousands of files) will use more memory and take longer to scan. Directories with millions of files may benefit from using folder filters to narrow the comparison scope before running.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is N-way comparison in the free tier?</h3>
+                    <p>N-way comparison (more than 2 sources) requires the Standard tier ($39/year) or the 7-day full-featured trial. The Basic (free forever) tier covers 2-way comparison. Licenses are activated inside the app via Help &rarr; Register / Activate.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Does it work on Linux?</h3>
+                    <p>Yes. N-way comparison and all source types work identically on Linux x86_64 and Windows 10/11. Download the Linux tarball from the download page.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p>
+            <strong>DirectoryCompare Pro</strong> &bull;
+            <a href="index.html">Home</a> &bull;
+            <a href="download.html">Download</a> &bull;
+            <a href="support.html">Support</a> &bull;
+            <a href="privacy.html">Privacy</a> &bull;
+            <a href="https://github.com/DirCompare-Pro/DirectoryComparePro" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </p>
+        <p style="margin-top:0.5rem;font-size:0.85rem;">
+            <strong>Guides:</strong> &bull;
+            <a href="git-branch-compare.html">Compare Git branches</a> &bull;
+            <a href="beyond-compare-alternative.html">Beyond Compare alternative</a>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

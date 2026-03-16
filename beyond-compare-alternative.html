@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Looking for a Beyond Compare alternative? DirectoryCompare Pro offers a free tier, N-way comparison, native Git/GitHub integration, and Linux support from $39/yr.">
+    <title>Beyond Compare Alternative - DirectoryCompare Pro</title>
+    <style>
+        :root {
+            --bg: #07111f;
+            --panel: #0f1b2d;
+            --panel-2: #13243a;
+            --panel-3: #f8fbff;
+            --text: #eaf2ff;
+            --text-dark: #132033;
+            --muted: #a9b8cf;
+            --line: rgba(255, 255, 255, 0.12);
+            --line-dark: rgba(19, 32, 51, 0.12);
+            --brand: #6d8cff;
+            --brand-2: #8c6dff;
+            --accent: #4ee1c1;
+            --success: #16c47f;
+            --warning: #ffb84d;
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+            --radius: 20px;
+            --max-width: 1180px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(109, 140, 255, 0.18), transparent 30%),
+                radial-gradient(circle at top right, rgba(78, 225, 193, 0.10), transparent 24%),
+                linear-gradient(180deg, #081221 0%, #0b1526 40%, #f5f9ff 40%, #f5f9ff 100%);
+            min-height: 100vh;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        .container { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+
+        .nav {
+            position: sticky; top: 0; z-index: 20; backdrop-filter: blur(14px);
+            background: rgba(7, 17, 31, 0.74); border-bottom: 1px solid var(--line);
+        }
+
+        .nav-inner {
+            min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+        }
+
+        .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; }
+
+        .brand-mark {
+            width: 38px; height: 38px; border-radius: 12px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            display: inline-flex; align-items: center; justify-content: center; color: white;
+        }
+
+        .nav-links { display: flex; align-items: center; gap: 22px; color: var(--muted); font-size: 0.96rem; }
+        .nav-links a:hover { color: white; }
+        .nav-links a[aria-current="page"] { color: white; font-weight: 700; }
+        :focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+
+        .nav-cta {
+            padding: 11px 18px; border-radius: 999px; color: white; font-weight: 700;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        }
+
+        .hero { padding: 72px 0 56px; }
+
+        .eyebrow {
+            display: inline-flex; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px;
+            color: var(--accent); font-weight: 700; font-size: 0.92rem; margin-bottom: 18px;
+            background: rgba(255,255,255,0.04);
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 4.5vw, 3.8rem); line-height: 1.08; letter-spacing: -0.04em; margin-bottom: 20px;
+        }
+
+        .hero p { color: var(--muted); font-size: 1.08rem; max-width: 760px; line-height: 1.7; }
+
+        .hero-meta {
+            display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px;
+        }
+
+        .hero-meta span {
+            padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px;
+            background: rgba(255,255,255,0.04); color: var(--muted); font-size: 0.94rem;
+        }
+
+        .btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 24px;
+            border-radius: 14px; font-weight: 800; transition: transform 0.18s ease; font-size: 1rem;
+        }
+
+        .btn:hover { transform: translateY(-1px); }
+
+        .btn-primary {
+            color: white; background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        }
+
+        .btn-secondary {
+            color: #244899; background: #eef4ff; border: 1px solid #dbe6ff;
+        }
+
+        .section { padding: 34px 0 72px; color: var(--text-dark); }
+        .section-header { max-width: 760px; margin-bottom: 32px; }
+        .section-header h2 { font-size: clamp(1.7rem, 2.8vw, 2.5rem); margin-bottom: 10px; letter-spacing: -0.03em; color: var(--text-dark); }
+        .section-header p { color: #5b6a82; font-size: 1.04rem; }
+
+        .card {
+            background: white; border: 1px solid var(--line-dark); border-radius: 20px; padding: 28px;
+            box-shadow: 0 18px 40px rgba(11, 21, 38, 0.06);
+        }
+
+        .card h3 { font-size: 1.18rem; margin-bottom: 10px; color: #0f1b2d; }
+        .card p { color: #5d6d86; margin-bottom: 10px; }
+        .card ul { padding-left: 18px; display: grid; gap: 8px; margin-top: 10px; }
+        .card li { color: #5d6d86; }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+        .two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+
+        /* Comparison table */
+        .compare-table-wrap { overflow-x: auto; margin-top: 8px; }
+
+        .compare-table {
+            width: 100%; border-collapse: collapse; font-size: 0.97rem;
+        }
+
+        .compare-table th, .compare-table td {
+            padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--line-dark);
+        }
+
+        .compare-table thead th {
+            background: #f0f5ff; color: #0f1b2d; font-weight: 800; font-size: 0.95rem;
+        }
+
+        .compare-table thead th:first-child { border-radius: 14px 0 0 0; }
+        .compare-table thead th:last-child { border-radius: 0 14px 0 0; }
+
+        .compare-table tbody tr:last-child td { border-bottom: none; }
+        .compare-table tbody tr:nth-child(even) td { background: #f8fbff; }
+        .compare-table tbody td { color: #3a4e6a; }
+        .compare-table tbody td:first-child { font-weight: 700; color: #0f1b2d; }
+
+        .check { color: var(--success); font-weight: 700; }
+        .cross { color: #aab4c4; }
+        .dcp-col { color: #244899; font-weight: 700; }
+
+        .badge {
+            display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px;
+            background: rgba(109, 140, 255, 0.12); color: var(--brand); font-weight: 800; font-size: 0.84rem; margin-bottom: 14px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(109,140,255,0.08), rgba(78,225,193,0.06));
+            border: 1px solid rgba(109,140,255,0.20); border-radius: 20px; padding: 32px; margin: 32px 0;
+        }
+
+        .highlight-box h3 { font-size: 1.25rem; color: #0f1b2d; margin-bottom: 12px; }
+        .highlight-box p { color: #5d6d86; margin-bottom: 12px; }
+        .highlight-box ul { padding-left: 18px; display: grid; gap: 8px; }
+        .highlight-box li { color: #5d6d86; }
+
+        .faq-list { display: grid; gap: 18px; }
+
+        .faq-item { background: white; border: 1px solid var(--line-dark); border-radius: 16px; padding: 24px; }
+        .faq-item h3 { font-size: 1.05rem; color: #0f1b2d; margin-bottom: 8px; }
+        .faq-item p { color: #5d6d86; }
+
+        .cta-band {
+            background: linear-gradient(135deg, var(--panel), var(--panel-2));
+            border-radius: 24px; padding: 48px; text-align: center; margin: 32px 0;
+            border: 1px solid var(--line); color: var(--text);
+        }
+
+        .cta-band h2 { font-size: clamp(1.6rem, 2.5vw, 2.2rem); margin-bottom: 12px; letter-spacing: -0.03em; }
+        .cta-band p { color: var(--muted); margin-bottom: 24px; }
+
+        .footer {
+            color: #6d7d96; padding: 18px 0 56px; text-align: center; font-size: 0.95rem;
+        }
+
+        .footer a { color: #284a9e; font-weight: 700; }
+
+        code { font-family: 'Courier New', monospace; background: #eef3fb; padding: 2px 6px; border-radius: 6px; color: #244899; }
+
+        @media (max-width: 1040px) {
+            .feature-grid { grid-template-columns: repeat(2, 1fr); }
+            .two-col { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            .feature-grid, .two-col { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 860px) {
+            .nav-inner { min-height: auto; padding: 14px 0; flex-wrap: wrap; }
+            .nav-links { width: 100%; flex-wrap: wrap; gap: 14px; justify-content: space-between; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <div class="container nav-inner">
+        <a href="index.html" class="brand">
+            <span class="brand-mark">DC</span>
+            <span>DirectoryCompare Pro</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="download.html">Download</a>
+            <a href="support.html">Support</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="https://github.com/DirCompare-Pro/DirectoryComparePro" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="download.html" class="nav-cta">Download Free</a>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="container">
+        <div class="eyebrow">Beyond Compare Alternative</div>
+        <h1>Looking for a Beyond Compare alternative?</h1>
+        <p>
+            DirectoryCompare Pro is a direct Beyond Compare alternative for Windows and Linux users who want a
+            free tier that never expires, unlimited N-way comparison, and native Git and GitHub integration -
+            at a significantly lower price point.
+        </p>
+        <div class="hero-meta">
+            <span>Free Basic tier, no trial expiry</span>
+            <span>Standard from $39/yr (vs. ~$60 one-time for BC Standard)</span>
+            <span>Windows 10/11 and Linux x86_64</span>
+            <span>7-day full trial, no sign-up</span>
+        </div>
+        <div class="btn-row">
+            <a href="download.html" class="btn btn-primary">Try it free for 7 days</a>
+            <a href="download.html" class="btn btn-secondary">Download now</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>DirectoryCompare Pro vs. Beyond Compare</h2>
+                <p>A straightforward comparison on the dimensions that matter most.</p>
+            </div>
+            <div class="compare-table-wrap">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th class="dcp-col">DirectoryCompare Pro</th>
+                            <th>Beyond Compare</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Free tier</td>
+                            <td class="dcp-col check">Free forever (Basic)</td>
+                            <td class="cross">30-day trial only</td>
+                        </tr>
+                        <tr>
+                            <td>Pricing</td>
+                            <td class="dcp-col">Free / $39/yr / $79/yr / $199 lifetime</td>
+                            <td>~$30 Standard / ~$60 Pro (one-time)</td>
+                        </tr>
+                        <tr>
+                            <td>Linux support</td>
+                            <td class="dcp-col check">Yes - Linux x86_64</td>
+                            <td class="check">Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Windows support</td>
+                            <td class="dcp-col check">Yes - Windows 10/11</td>
+                            <td class="check">Yes</td>
+                        </tr>
+                        <tr>
+                            <td>N-way comparison</td>
+                            <td class="dcp-col check">Unlimited N-way (2, 3, 4+ sources)</td>
+                            <td>3-way only (Pro edition)</td>
+                        </tr>
+                        <tr>
+                            <td>Git integration</td>
+                            <td class="dcp-col check">Native libgit2 - no checkout needed</td>
+                            <td>Basic Git support</td>
+                        </tr>
+                        <tr>
+                            <td>GitHub integration</td>
+                            <td class="dcp-col check">Via REST API - no cloning</td>
+                            <td class="cross">Not natively</td>
+                        </tr>
+                        <tr>
+                            <td>Archive comparison</td>
+                            <td class="dcp-col check">ZIP, TAR, 7Z, RAR, ISO</td>
+                            <td class="check">ZIP and others</td>
+                        </tr>
+                        <tr>
+                            <td>FTP/SFTP comparison</td>
+                            <td class="dcp-col check">Yes (Premium tier)</td>
+                            <td class="check">Yes (Pro edition)</td>
+                        </tr>
+                        <tr>
+                            <td>Trial period</td>
+                            <td class="dcp-col">7 days full Premium, no sign-up</td>
+                            <td>30 days</td>
+                        </tr>
+                        <tr>
+                            <td>Minority difference highlighting</td>
+                            <td class="dcp-col check">Yes - flags the outlier source</td>
+                            <td class="cross">Not in standard view</td>
+                        </tr>
+                        <tr>
+                            <td>Similarity search</td>
+                            <td class="dcp-col check">Yes (Premium tier)</td>
+                            <td class="cross">No</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2>What DirectoryCompare Pro does differently</h2>
+                <p>Beyond Compare is a mature, solid product. These are the areas where DirectoryCompare Pro takes a different approach.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="card">
+                    <div class="badge">Free tier</div>
+                    <h3>Free forever, not just a trial</h3>
+                    <p>The Basic tier of DirectoryCompare Pro is free with no expiry date. You get 2-way directory comparison, text and hex diff viewer, archive comparison, CSV/Excel compare, image diff, patch support, and session management - at no cost, indefinitely.</p>
+                </div>
+                <div class="card">
+                    <div class="badge">N-Way</div>
+                    <h3>Unlimited N-way sources</h3>
+                    <p>Beyond Compare Pro supports 3-way merging. DirectoryCompare Pro supports arbitrary N-way comparison - add 2, 3, 4, or more sources simultaneously. Each source can be a local folder, Git branch, GitHub repo, archive, FTP path, or web URL.</p>
+                </div>
+                <div class="card">
+                    <div class="badge">Git</div>
+                    <h3>Native Git via libgit2</h3>
+                    <p>DirectoryCompare Pro uses libgit2 to read Git branch content directly from the object database. No checkout, no stash, no <code>git</code> command required. Compare any two branches, commits, or tags without touching your working tree.</p>
+                </div>
+                <div class="card">
+                    <div class="badge">GitHub</div>
+                    <h3>GitHub without cloning</h3>
+                    <p>Add a GitHub repository as a source via the REST API. Useful for comparing a local branch against a remote GitHub branch without running a full clone operation.</p>
+                </div>
+                <div class="card">
+                    <div class="badge">Pricing</div>
+                    <h3>Annual subscription with Lifetime option</h3>
+                    <p>Standard ($39/yr) and Premium ($79/yr) keep the purchase decision low-risk. If you decide you want permanent access, the $199 Lifetime tier covers all Premium features with no renewal.</p>
+                </div>
+                <div class="card">
+                    <div class="badge">Similarity</div>
+                    <h3>Similarity search (Premium)</h3>
+                    <p>The Premium tier includes similarity search and duplicate detection workflows - useful for large media libraries, code audits, or archival projects where you need to find near-duplicate files across sources.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="highlight-box">
+                <h3>Also considering WinMerge, Meld, or DiffMerge?</h3>
+                <p>
+                    WinMerge and Meld are excellent free tools for basic 2-way comparisons, but both lack N-way support,
+                    Git branch comparison via libgit2, GitHub integration, and archive inspection.
+                    DiffMerge focuses on text-level merging rather than folder comparison workflows.
+                </p>
+                <p>
+                    DirectoryCompare Pro fills the gap between these free utilities and the full cost of Beyond Compare Pro,
+                    with a free Basic tier if all you need is a solid 2-way folder compare.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="cta-band">
+                <h2>Try DirectoryCompare Pro free for 7 days</h2>
+                <p>Full Premium features. Starts automatically on first launch. No sign-up, no credit card.</p>
+                <a href="download.html" class="btn btn-primary">Download DirectoryCompare Pro</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently asked questions</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3>Is DirectoryCompare Pro really free?</h3>
+                    <p>The Basic tier is free with no expiry. It covers 2-way local directory comparison, text and hex diff viewing, archive comparison (ZIP, TAR, 7Z, RAR, ISO), CSV/Excel compare, image diff, patch support, and session bookmarks. Standard and Premium features require a paid license, but the Basic tier does not expire.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Does it run on Linux?</h3>
+                    <p>Yes. DirectoryCompare Pro supports Linux x86_64. The Git/libgit2 integration, archive comparison, and all comparison modes work on Linux as on Windows. Download the Linux tarball from the download page.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How does it compare to WinMerge or Meld?</h3>
+                    <p>WinMerge (Windows only) and Meld (Linux/macOS) are solid free 2-way tools but do not support N-way comparison, native Git branch reading via libgit2, GitHub REST API sources, or archive inspection at folder level. DirectoryCompare Pro covers all of those in the Standard and Premium tiers, and the Basic tier is competitive with those tools for everyday 2-way use.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I migrate from Beyond Compare?</h3>
+                    <p>There is no automated session import from Beyond Compare, but the workflow is similar: add sources, configure filters, run the comparison. The DirectoryCompare Pro interface should feel familiar to Beyond Compare users. Sessions, bookmarks, and comparison profiles are saved in-app and persist across runs.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How do I activate a license?</h3>
+                    <p>Licenses are activated inside the application via Help &rarr; Register / Activate. There is no external activation portal. Purchase is handled in-app, and the license key is delivered immediately.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What is the Lifetime tier?</h3>
+                    <p>The Lifetime tier is a one-time $199 payment that gives you all Premium features permanently, with no annual renewal. It is the best value for heavy users who plan to use the tool long-term.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p>
+            <strong>DirectoryCompare Pro</strong> &bull;
+            <a href="index.html">Home</a> &bull;
+            <a href="download.html">Download</a> &bull;
+            <a href="support.html">Support</a> &bull;
+            <a href="privacy.html">Privacy</a> &bull;
+            <a href="https://github.com/DirCompare-Pro/DirectoryComparePro" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </p>
+        <p style="margin-top:0.5rem;font-size:0.85rem;">
+            <strong>Guides:</strong> &bull;
+            <a href="git-branch-compare.html">Compare Git branches</a> &bull;
+            <a href="nway-folder-comparison.html">N-way folder comparison</a>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compare Git branches without checkout using DirectoryCompare Pro. Uses libgit2 to diff branches directly - no stash, no switch, no cloning needed. Free to try.">
+    <title>Compare Git Branches Without Checkout - DirectoryCompare Pro</title>
+    <style>
+        :root {
+            --bg: #07111f;
+            --panel: #0f1b2d;
+            --panel-2: #13243a;
+            --panel-3: #f8fbff;
+            --text: #eaf2ff;
+            --text-dark: #132033;
+            --muted: #a9b8cf;
+            --line: rgba(255, 255, 255, 0.12);
+            --line-dark: rgba(19, 32, 51, 0.12);
+            --brand: #6d8cff;
+            --brand-2: #8c6dff;
+            --accent: #4ee1c1;
+            --success: #16c47f;
+            --warning: #ffb84d;
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+            --radius: 20px;
+            --max-width: 1180px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(109, 140, 255, 0.18), transparent 30%),
+                radial-gradient(circle at top right, rgba(78, 225, 193, 0.10), transparent 24%),
+                linear-gradient(180deg, #081221 0%, #0b1526 40%, #f5f9ff 40%, #f5f9ff 100%);
+            min-height: 100vh;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        .container { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+
+        .nav {
+            position: sticky; top: 0; z-index: 20; backdrop-filter: blur(14px);
+            background: rgba(7, 17, 31, 0.74); border-bottom: 1px solid var(--line);
+        }
+
+        .nav-inner {
+            min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+        }
+
+        .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; }
+
+        .brand-mark {
+            width: 38px; height: 38px; border-radius: 12px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            display: inline-flex; align-items: center; justify-content: center; color: white;
+        }
+
+        .nav-links { display: flex; align-items: center; gap: 22px; color: var(--muted); font-size: 0.96rem; }
+        .nav-links a:hover { color: white; }
+        .nav-links a[aria-current="page"] { color: white; font-weight: 700; }
+        :focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+
+        .nav-cta {
+            padding: 11px 18px; border-radius: 999px; color: white; font-weight: 700;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        }
+
+        .hero { padding: 72px 0 56px; }
+
+        .eyebrow {
+            display: inline-flex; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px;
+            color: var(--accent); font-weight: 700; font-size: 0.92rem; margin-bottom: 18px;
+            background: rgba(255,255,255,0.04);
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 4.5vw, 3.8rem); line-height: 1.08; letter-spacing: -0.04em; margin-bottom: 20px;
+        }
+
+        .hero p { color: var(--muted); font-size: 1.08rem; max-width: 760px; line-height: 1.7; }
+
+        .hero-meta {
+            display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px;
+        }
+
+        .hero-meta span {
+            padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px;
+            background: rgba(255,255,255,0.04); color: var(--muted); font-size: 0.94rem;
+        }
+
+        .btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 24px;
+            border-radius: 14px; font-weight: 800; transition: transform 0.18s ease; font-size: 1rem;
+        }
+
+        .btn:hover { transform: translateY(-1px); }
+
+        .btn-primary {
+            color: white; background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        }
+
+        .btn-secondary {
+            color: #244899; background: #eef4ff; border: 1px solid #dbe6ff;
+        }
+
+        .section { padding: 34px 0 72px; color: var(--text-dark); }
+        .section-header { max-width: 760px; margin-bottom: 32px; }
+        .section-header h2 { font-size: clamp(1.7rem, 2.8vw, 2.5rem); margin-bottom: 10px; letter-spacing: -0.03em; color: var(--text-dark); }
+        .section-header p { color: #5b6a82; font-size: 1.04rem; }
+
+        .card {
+            background: white; border: 1px solid var(--line-dark); border-radius: 20px; padding: 28px;
+            box-shadow: 0 18px 40px rgba(11, 21, 38, 0.06);
+        }
+
+        .card h3 { font-size: 1.18rem; margin-bottom: 10px; color: #0f1b2d; }
+        .card p { color: #5d6d86; margin-bottom: 10px; }
+        .card ul, .card ol { padding-left: 18px; display: grid; gap: 8px; margin-top: 10px; }
+        .card li { color: #5d6d86; }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+        .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+        .two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+
+        .step-number {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 36px; height: 36px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            color: white; font-weight: 800; font-size: 1rem; margin-bottom: 14px; flex-shrink: 0;
+        }
+
+        .badge {
+            display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px;
+            background: rgba(109, 140, 255, 0.12); color: var(--brand); font-weight: 800; font-size: 0.84rem; margin-bottom: 14px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(109,140,255,0.08), rgba(78,225,193,0.06));
+            border: 1px solid rgba(109,140,255,0.20); border-radius: 20px; padding: 32px; margin: 32px 0;
+        }
+
+        .highlight-box h3 { font-size: 1.25rem; color: #0f1b2d; margin-bottom: 12px; }
+        .highlight-box p { color: #5d6d86; }
+
+        .faq-list { display: grid; gap: 18px; }
+
+        .faq-item { background: white; border: 1px solid var(--line-dark); border-radius: 16px; padding: 24px; }
+        .faq-item h3 { font-size: 1.05rem; color: #0f1b2d; margin-bottom: 8px; }
+        .faq-item p { color: #5d6d86; }
+
+        .note {
+            margin-top: 18px; background: #eef8ff; color: #24405f; border: 1px solid rgba(36,64,95,0.10);
+            border-radius: 18px; padding: 18px 20px;
+        }
+
+        .cta-band {
+            background: linear-gradient(135deg, var(--panel), var(--panel-2));
+            border-radius: 24px; padding: 48px; text-align: center; margin: 32px 0;
+            border: 1px solid var(--line); color: var(--text);
+        }
+
+        .cta-band h2 { font-size: clamp(1.6rem, 2.5vw, 2.2rem); margin-bottom: 12px; letter-spacing: -0.03em; }
+        .cta-band p { color: var(--muted); margin-bottom: 24px; }
+
+        .footer {
+            color: #6d7d96; padding: 18px 0 56px; text-align: center; font-size: 0.95rem;
+        }
+
+        .footer a { color: #284a9e; font-weight: 700; }
+
+        code { font-family: 'Courier New', monospace; background: #eef3fb; padding: 2px 6px; border-radius: 6px; color: #244899; }
+
+        @media (max-width: 1040px) {
+            .feature-grid, .steps-grid { grid-template-columns: repeat(2, 1fr); }
+            .two-col { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            .feature-grid, .steps-grid, .two-col { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 860px) {
+            .nav-inner { min-height: auto; padding: 14px 0; flex-wrap: wrap; }
+            .nav-links { width: 100%; flex-wrap: wrap; gap: 14px; justify-content: space-between; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <div class="container nav-inner">
+        <a href="index.html" class="brand">
+            <span class="brand-mark">DC</span>
+            <span>DirectoryCompare Pro</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="download.html">Download</a>
+            <a href="support.html">Support</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="https://github.com/DirCompare-Pro/DirectoryComparePro" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="download.html" class="nav-cta">Download Free</a>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="container">
+        <div class="eyebrow">Git Branch Comparison</div>
+        <h1>Compare Git branches without checkout</h1>
+        <p>
+            Stop stashing your work, switching branches, and switching back just to see what changed. DirectoryCompare Pro
+            uses <strong>libgit2</strong> to read branch content directly from the repository object store - your working
+            tree stays exactly as it is, and you get a full folder diff in seconds.
+        </p>
+        <div class="hero-meta">
+            <span>No stash. No checkout. No cloning.</span>
+            <span>Works with local repos and GitHub</span>
+            <span>Standard tier - $39/yr or 7-day free trial</span>
+            <span>Windows 10/11 and Linux x86_64</span>
+        </div>
+        <div class="btn-row">
+            <a href="download.html" class="btn btn-primary">Try it free for 7 days</a>
+            <a href="download.html" class="btn btn-secondary">Download now</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>The problem with comparing Git branches</h2>
+                <p>The traditional workflow is a time sink - and it clobbers your working directory in the process.</p>
+            </div>
+            <div class="two-col">
+                <div class="card">
+                    <h3>The old way</h3>
+                    <ol>
+                        <li>Stash or commit your current changes</li>
+                        <li>Note the current branch name</li>
+                        <li><code>git checkout branch-a</code></li>
+                        <li>Export or note what you want to compare</li>
+                        <li><code>git checkout branch-b</code></li>
+                        <li>Do your comparison</li>
+                        <li><code>git checkout original-branch</code></li>
+                        <li>Pop the stash and hope nothing breaks</li>
+                    </ol>
+                    <p style="margin-top:14px;">Every step is a context switch. Every checkout is a risk if you have uncommitted changes.</p>
+                </div>
+                <div class="card">
+                    <h3>With DirectoryCompare Pro</h3>
+                    <ol>
+                        <li>Add your repository as a source, pick a branch</li>
+                        <li>Add the same repo again, pick the other branch</li>
+                        <li>Click Compare</li>
+                    </ol>
+                    <p style="margin-top:14px;">
+                        Your working tree is never touched. You can compare any two branches - or any branch against
+                        your live working directory - without stashing a single file.
+                    </p>
+                    <div class="note" style="margin-top:16px;">
+                        <strong>Under the hood:</strong> DirectoryCompare Pro uses libgit2 to read blobs directly from the
+                        Git object database. No branch checkout happens at any point.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2>How to diff Git branches in DirectoryCompare Pro</h2>
+                <p>The workflow is four steps. You can have your comparison open in under a minute.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="card">
+                    <div class="step-number">1</div>
+                    <h3>Add your repo as a source</h3>
+                    <p>Click "Add Source" and choose Git Repository. Point it at any local <code>.git</code> directory on your machine.</p>
+                </div>
+                <div class="card">
+                    <div class="step-number">2</div>
+                    <h3>Pick the first branch</h3>
+                    <p>Select the branch or commit ref you want as the left side of the comparison. Tags and commit SHAs also work.</p>
+                </div>
+                <div class="card">
+                    <div class="step-number">3</div>
+                    <h3>Add the second source</h3>
+                    <p>Add a second source - it can be the same repo on a different branch, a different local clone, a live folder, a ZIP archive, or a GitHub repository.</p>
+                </div>
+                <div class="card">
+                    <div class="step-number">4</div>
+                    <h3>Click Compare</h3>
+                    <p>DirectoryCompare Pro reads both trees, builds the diff, and presents a full folder comparison with file-level status and per-file diff viewing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="highlight-box">
+                <h3>Mix Git branches with live directories</h3>
+                <p>
+                    One of the most useful workflows is comparing a Git branch directly against your current working directory.
+                    Add <code>feature/new-ui</code> as one source and your live <code>src/</code> folder as the other.
+                    You can see immediately what your uncommitted changes add or remove compared to any branch - without
+                    running a single Git command.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2>What you can compare</h2>
+                <p>Git sources in DirectoryCompare Pro are not limited to two local branches.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="card">
+                    <div class="badge">Local Git</div>
+                    <h3>Two branches, same repo</h3>
+                    <p>Add the same repository twice with different branch selectors. Works with local branches, remote-tracking branches, and any commit SHA.</p>
+                </div>
+                <div class="card">
+                    <div class="badge">GitHub REST API</div>
+                    <h3>GitHub repositories</h3>
+                    <p>Add a GitHub repository directly via the REST API. No cloning required. Compare branches or commits from any public or private repo you have access to.</p>
+                </div>
+                <div class="card">
+                    <div class="badge">Mixed Sources</div>
+                    <h3>Branch vs. live folder</h3>
+                    <p>Pair a Git branch source with a local folder, archive, or FTP path. The mixed-source capability means you can compare any committed state against any live state.</p>
+                </div>
+                <div class="card">
+                    <div class="badge">N-Way</div>
+                    <h3>Multiple branches at once</h3>
+                    <p>With N-way comparison you can load <code>main</code>, <code>develop</code>, and <code>feature/xyz</code> all at once and see where each branch diverges.</p>
+                </div>
+                <div class="card">
+                    <div class="badge">Archives</div>
+                    <h3>Branch vs. release archive</h3>
+                    <p>Compare a Git branch against a ZIP, TAR, 7Z, RAR, or ISO archive. Useful for verifying that a release build matches the tagged source.</p>
+                </div>
+                <div class="card">
+                    <div class="badge">Commits</div>
+                    <h3>Any commit SHA or tag</h3>
+                    <p>Not limited to branch tips. Enter any commit hash or tag name to compare a historical state against the current branch, another commit, or a live directory.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="cta-band">
+                <h2>Ready to compare Git branches without the checkout dance?</h2>
+                <p>Free 7-day trial, starts automatically on first launch. No sign-up required.</p>
+                <a href="download.html" class="btn btn-primary">Download DirectoryCompare Pro</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently asked questions</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3>Can I compare two branches in the same repository?</h3>
+                    <p>Yes. Add the repository path twice as two separate sources, then select a different branch for each. DirectoryCompare Pro treats each source independently, so the same repo path can appear multiple times with different branch selectors.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Does it work with GitHub repositories?</h3>
+                    <p>Yes. DirectoryCompare Pro can connect to GitHub via the REST API and compare branches or commits without cloning the repository locally. You provide a personal access token for private repos; public repos need no credentials.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Do I need Git installed on my machine?</h3>
+                    <p>No. DirectoryCompare Pro uses its own bundled libgit2 library to read Git repositories. The system-level <code>git</code> command is not required.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Does it modify my working tree or stash anything?</h3>
+                    <p>No. Reading branches through libgit2 is a read-only operation against the object database. Your working directory, index, and stash are completely untouched.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is it free?</h3>
+                    <p>Git branch and GitHub comparison requires the Standard tier ($39/year). DirectoryCompare Pro includes a full 7-day trial that starts automatically on first launch - no sign-up needed. The Basic tier is free forever and covers 2-way local folder comparison.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Does it run on Linux?</h3>
+                    <p>Yes. DirectoryCompare Pro supports Linux x86_64. The Git integration via libgit2 works the same on Linux as on Windows.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I compare more than two branches at once?</h3>
+                    <p>Yes, with N-way comparison (Standard tier and above). You can add three or more Git branch sources simultaneously and see a consolidated diff view showing where all branches agree and where they diverge.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p>
+            <strong>DirectoryCompare Pro</strong> &bull;
+            <a href="index.html">Home</a> &bull;
+            <a href="download.html">Download</a> &bull;
+            <a href="support.html">Support</a> &bull;
+            <a href="privacy.html">Privacy</a> &bull;
+            <a href="https://github.com/DirCompare-Pro/DirectoryComparePro" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </p>
+        <p style="margin-top:0.5rem;font-size:0.85rem;">
+            <strong>Guides:</strong> &bull;
+            <a href="beyond-compare-alternative.html">Beyond Compare alternative</a> &bull;
+            <a href="nway-folder-comparison.html">N-way folder comparison</a>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
