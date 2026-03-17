@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DirectoryCompare Pro CLI reference and quick start guide. Command-line flags, folder comparison, Git mergetool setup, and CI/CD integration.">
+    <title>CLI Quick Start &amp; Command Reference - DirectoryCompare Pro</title>
+    <style>
+        :root {
+            --bg: #07111f;
+            --panel: #0f1b2d;
+            --panel-2: #13243a;
+            --panel-3: #f8fbff;
+            --text: #eaf2ff;
+            --text-dark: #132033;
+            --muted: #a9b8cf;
+            --line: rgba(255,255,255,0.12);
+            --line-dark: rgba(19,32,51,0.12);
+            --brand: #6d8cff;
+            --accent: #4ee1c1;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; background: var(--bg); color: var(--text); }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+        header { background: var(--panel); border-bottom: 1px solid var(--line); padding: 28px 0 32px; }
+        header h1 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 8px; }
+        header p { color: var(--muted); font-size: 1.05rem; max-width: 620px; }
+        nav.breadcrumb { font-size: 0.88rem; color: var(--muted); margin-bottom: 16px; }
+        nav.breadcrumb a { color: var(--brand); text-decoration: none; }
+        main { background: var(--panel-3); color: var(--text-dark); }
+        .section { padding: 40px 0 56px; }
+        h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 10px; color: var(--text-dark); letter-spacing: -0.02em; }
+        h3 { font-size: 1.1rem; font-weight: 700; margin: 24px 0 8px; color: #1a2f4a; }
+        p { margin-bottom: 12px; color: #3a4d62; }
+        pre { background: #0f1b2d; color: #a9d1ff; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-size: 0.91rem; line-height: 1.6; margin: 12px 0 20px; font-family: 'Consolas', 'Fira Mono', monospace; }
+        code { background: #e8eef6; color: #1a2f4a; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; font-family: 'Consolas', 'Fira Mono', monospace; }
+        pre code { background: none; color: inherit; padding: 0; }
+        table { width: 100%; border-collapse: collapse; margin: 12px 0 24px; font-size: 0.93rem; }
+        th { background: #e2e9f3; text-align: left; padding: 10px 14px; font-weight: 600; color: #1a2f4a; border-bottom: 2px solid #c8d5e8; }
+        td { padding: 9px 14px; border-bottom: 1px solid #dde6f0; vertical-align: top; }
+        td:first-child { font-family: 'Consolas', 'Fira Mono', monospace; font-size: 0.88rem; color: #244899; white-space: nowrap; }
+        tr:last-child td { border-bottom: none; }
+        .badge { display: inline-block; background: var(--brand); color: #fff; font-size: 0.75rem; font-weight: 700; padding: 2px 9px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
+        .badge.free { background: #28a745; }
+        .tip { background: #eaf4ff; border-left: 4px solid var(--brand); padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 16px 0; font-size: 0.94rem; color: #1a2f4a; }
+        footer { background: var(--panel); border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 0.9rem; }
+        footer a { color: var(--brand); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        hr { border: none; border-top: 1px solid #dde6f0; margin: 32px 0; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <nav class="breadcrumb"><a href="index.html">DirectoryCompare Pro</a> &rsaquo; CLI Quick Start</nav>
+        <h1>CLI Quick Start &amp; Command Reference</h1>
+        <p>Everything you need to run folder comparisons, integrate with CI/CD, and set up Git mergetool — from the command line.</p>
+    </div>
+</header>
+
+<main>
+    <section class="section">
+        <div class="container">
+
+            <h2>Two modes in one exe</h2>
+            <p>DirectoryCompare Pro ships as a single portable exe. It has two modes depending on how you call it:</p>
+            <table>
+                <tr><th>Mode</th><th>How to invoke</th><th>What it does</th></tr>
+                <tr><td>GUI</td><td><code>DirectoryComparePro.exe</code></td><td>Opens the full graphical interface</td></tr>
+                <tr><td>CLI</td><td><code>dircompare &lt;dir1&gt; &lt;dir2&gt;</code></td><td>Headless folder comparison — output to terminal, no window</td></tr>
+                <tr><td>Mergetool</td><td><code>DirectoryComparePro.exe -m BASE LOCAL REMOTE MERGED</code></td><td>Opens merge dialog for Git conflict resolution, exits with code</td></tr>
+            </table>
+
+            <hr>
+
+            <h2>Basic folder comparison</h2>
+            <pre><code>dircompare C:\project\v1 C:\project\v2</code></pre>
+            <p>Shows a summary of differences: files changed, added, removed.</p>
+
+            <h3>Compare three or more folders</h3>
+            <pre><code>dircompare C:\src C:\backup --extra-source C:\archive</code></pre>
+
+            <h3>Deep content comparison (hash-based)</h3>
+            <pre><code>dircompare C:\src C:\backup --deep</code></pre>
+            <p>Uses SHA-256 hashing instead of size/date. Catches files that look identical but have different content.</p>
+
+            <hr>
+
+            <h2>Full flag reference</h2>
+            <table>
+                <tr><th>Flag</th><th>Description</th></tr>
+                <tr><td>-h, --help</td><td>Show help and exit</td></tr>
+                <tr><td>-v, --version</td><td>Show version and exit</td></tr>
+                <tr><td>-q, --quiet</td><td>Suppress progress output — ideal for CI/CD pipelines</td></tr>
+                <tr><td>--deep</td><td>Enable deep content comparison (SHA-256 hash-based)</td></tr>
+                <tr><td>--extra-source &lt;dir&gt;</td><td>Add another source for N-way comparison (repeatable)</td></tr>
+                <tr><td>--export-csv &lt;file&gt;</td><td>Export results to CSV</td></tr>
+                <tr><td>--export-html &lt;file&gt;</td><td>Export results to HTML report</td></tr>
+                <tr><td>--export-json &lt;file&gt;</td><td>Export results to JSON</td></tr>
+                <tr><td>--filter &lt;pattern&gt;</td><td>Exclude files matching pattern — wildcards supported, repeatable</td></tr>
+                <tr><td>--copy-to-dir2</td><td>Copy missing/different files to dir2 (2-source only)</td></tr>
+                <tr><td>--copy-to-dir1</td><td>Copy missing/different files to dir1 (2-source only)</td></tr>
+                <tr><td>--limit &lt;N&gt;</td><td>Show only the first N differences in output</td></tr>
+                <tr><td>--no-summary</td><td>Skip summary — exit code only (0 = identical, 1 = differences)</td></tr>
+                <tr><td>--smart-alignment</td><td>Enable smart folder alignment (default)</td></tr>
+                <tr><td>--no-smart-alignment</td><td>Disable smart folder alignment</td></tr>
+            </table>
+
+            <hr>
+
+            <h2>Export examples</h2>
+
+            <h3>CSV report</h3>
+            <pre><code>dircompare C:\prod C:\staging --deep --export-csv results.csv</code></pre>
+
+            <h3>HTML report with filter</h3>
+            <pre><code>dircompare C:\src C:\backup --filter "*.exe" --filter "node_modules/*" --export-html report.html</code></pre>
+
+            <h3>N-way JSON export</h3>
+            <pre><code>dircompare dir1 dir2 --extra-source dir3 --extra-source dir4 --export-json results.json</code></pre>
+
+            <h3>CI/CD silent mode (exit code only)</h3>
+            <pre><code>dircompare C:\prod C:\staging --quiet --no-summary
+echo Exit code: %ERRORLEVEL%
+REM 0 = identical, 1 = differences found</code></pre>
+
+            <hr>
+
+            <h2>Git mergetool setup <span class="badge free">Free</span></h2>
+            <p>Register DCP as Git's merge conflict resolver. 3-way merge is free in Basic tier — no license required.</p>
+
+            <h3>Step 1 — Add to your .gitconfig</h3>
+            <pre><code>[mergetool "dcp"]
+    cmd = "C:/path/to/DirectoryComparePro.exe" -m "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+    trustExitCode = true
+
+[merge]
+    tool = dcp</code></pre>
+            <div class="tip">Use forward slashes in the path, even on Windows. Replace <code>C:/path/to/</code> with wherever you extracted the exe.</div>
+
+            <h3>Step 2 — Use it</h3>
+            <pre><code>git merge feature/my-branch
+# conflict!
+git mergetool
+# DCP opens once per conflicted file — resolve, save, close</code></pre>
+
+            <p>DCP exits 0 when all conflicts are resolved and saved, 1 when cancelled. Git uses the exit code to decide whether to mark the file as resolved.</p>
+
+            <div class="tip">For a full walkthrough of Git branch comparison (not just merging), see the <a href="git-branch-compare.html">Git integration guide</a>.</div>
+
+            <hr>
+
+            <h2>Exit codes</h2>
+            <table>
+                <tr><th>Code</th><th>Meaning</th></tr>
+                <tr><td>0</td><td>Comparison complete — sources are identical (or merge saved successfully)</td></tr>
+                <tr><td>1</td><td>Differences found (or merge cancelled)</td></tr>
+                <tr><td>2</td><td>Error — bad arguments, path not found, or permission denied</td></tr>
+            </table>
+
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>
+            <strong>DirectoryCompare Pro</strong> &bull;
+            <a href="index.html">Home</a> &bull;
+            <a href="download.html">Download</a> &bull;
+            <a href="features.html">Features</a> &bull;
+            <a href="git-branch-compare.html">Git Guide</a> &bull;
+            <a href="support.html">Support</a>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
