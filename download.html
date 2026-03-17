@@ -345,6 +345,34 @@
         <section class="section" style="padding-top: 0;">
             <div class="container">
                 <div class="section-header">
+                    <h2>Use as a Git mergetool</h2>
+                    <p>DCP is a single portable exe — drop it anywhere and point Git at it. 3-way merge (base/mine/yours) is <strong>free</strong> in the Basic tier.</p>
+                </div>
+                <div class="verify-grid">
+                    <article class="card">
+                        <h3>Add to .gitconfig</h3>
+                        <pre>[mergetool "dcp"]
+    cmd = "C:/path/to/DirectoryComparePro.exe" -m "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+    trustExitCode = true
+
+[merge]
+    tool = dcp</pre>
+                        <div class="note">Use forward slashes in the path, even on Windows. Replace with wherever you extracted DCP.</div>
+                    </article>
+                    <article class="card">
+                        <h3>Then just run git mergetool</h3>
+                        <pre>git merge feature/branch
+# conflict — DCP opens automatically
+git mergetool</pre>
+                        <div class="note">DCP opens once per conflicted file. Resolve, save, close. Git marks it resolved. See the <a href="git-branch-compare.html">full Git guide</a> for more.</div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+                <div class="section-header">
                     <h2>Integrity checks and release housekeeping</h2>
                     <p>If you publish checksums, keep them accurate and visible. If you haven’t generated them yet, don’t pretend you have.</p>
                 </div>

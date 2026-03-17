@@ -408,6 +408,51 @@
             </div>
         </div>
     </section>
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Use DirectoryCompare Pro as your Git mergetool</h2>
+                <p>Register DCP as Git's merge conflict resolver. When you run <code>git mergetool</code>, Git opens DCP automatically with base, local, and remote versions pre-loaded. Resolve conflicts, save, done. Free in Basic tier — no paid license required.</p>
+            </div>
+
+            <div class="highlight-box" style="margin-bottom: 28px;">
+                <h3>Step 1 — Add to your .gitconfig</h3>
+                <pre style="background:#0f1b2d;color:#a9d1ff;padding:16px;border-radius:6px;overflow-x:auto;font-size:0.92rem;"><code>[mergetool "dcp"]
+    cmd = "C:/path/to/DirectoryComparePro.exe" -m "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+    trustExitCode = true
+
+[merge]
+    tool = dcp</code></pre>
+                <p style="margin-top:12px;font-size:0.93rem;">Replace <code>C:/path/to/</code> with the folder you extracted DCP into. Use forward slashes even on Windows.</p>
+            </div>
+
+            <div class="highlight-box" style="margin-bottom: 28px;">
+                <h3>Step 2 — Trigger it during a merge conflict</h3>
+                <pre style="background:#0f1b2d;color:#a9d1ff;padding:16px;border-radius:6px;overflow-x:auto;font-size:0.92rem;"><code>git merge feature/my-branch
+# conflict!
+git mergetool</code></pre>
+                <p style="margin-top:12px;font-size:0.93rem;">Git calls DCP once per conflicted file. Resolve all hunks, click Save, close the window. Git marks the conflict resolved automatically.</p>
+            </div>
+
+            <div class="feature-grid" style="margin-top: 8px;">
+                <div class="card">
+                    <div class="badge">Free</div>
+                    <h3>No license needed</h3>
+                    <p>3-way merge (base/mine/yours) is included in the free Basic tier. No registration, no trial expiry.</p>
+                </div>
+                <div class="card">
+                    <div class="badge">Exit codes</div>
+                    <h3>trustExitCode = true</h3>
+                    <p>DCP exits 0 when all conflicts are resolved and saved, 1 when you cancel. Git uses this to know whether to mark the file as resolved.</p>
+                </div>
+                <div class="card">
+                    <div class="badge">No install</div>
+                    <h3>Just unzip and point Git at it</h3>
+                    <p>DCP is a single portable exe. Drop it anywhere, update .gitconfig with the path, and you're done.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
 
 <footer class="footer">
