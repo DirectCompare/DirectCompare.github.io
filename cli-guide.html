@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="DirectoryCompare Pro CLI reference and quick start guide. Command-line flags, folder comparison, Git mergetool setup, and CI/CD integration.">
-    <title>CLI Quick Start &amp; Command Reference - DirectoryCompare Pro</title>
+    <meta name="description" content="DirectCompare CLI reference and quick start guide. Command-line flags, folder comparison, Git mergetool setup, and CI/CD integration.">
+    <title>CLI Quick Start &amp; Command Reference - DirectCompare</title>
     <style>
         :root {
             --bg: #07111f;
@@ -53,7 +53,7 @@
 
 <header>
     <div class="container">
-        <nav class="breadcrumb"><a href="index.html">DirectoryCompare Pro</a> &rsaquo; CLI Quick Start</nav>
+        <nav class="breadcrumb"><a href="index.html">DirectCompare</a> &rsaquo; CLI Quick Start</nav>
         <h1>CLI Quick Start &amp; Command Reference</h1>
         <p>Everything you need to run folder comparisons, integrate with CI/CD, and set up Git mergetool — from the command line.</p>
     </div>
@@ -64,12 +64,12 @@
         <div class="container">
 
             <h2>Two modes in one exe</h2>
-            <p>DirectoryCompare Pro ships as a single portable exe. It has two modes depending on how you call it:</p>
+            <p>DirectCompare ships as a single portable exe. It has two modes depending on how you call it:</p>
             <table>
                 <tr><th>Mode</th><th>How to invoke</th><th>What it does</th></tr>
-                <tr><td>GUI</td><td><code>DirectoryComparePro.exe</code></td><td>Opens the full graphical interface</td></tr>
+                <tr><td>GUI</td><td><code>DirectCompare.exe</code></td><td>Opens the full graphical interface</td></tr>
                 <tr><td>CLI</td><td><code>dircompare &lt;dir1&gt; &lt;dir2&gt;</code></td><td>Headless folder comparison — output to terminal, no window</td></tr>
-                <tr><td>Mergetool</td><td><code>DirectoryComparePro.exe -m BASE LOCAL REMOTE MERGED</code></td><td>Opens merge dialog for Git conflict resolution, exits with code</td></tr>
+                <tr><td>Mergetool</td><td><code>DirectCompare.exe -m BASE LOCAL REMOTE MERGED</code></td><td>Opens merge dialog for Git conflict resolution, exits with code</td></tr>
             </table>
 
             <hr>
@@ -132,7 +132,7 @@ REM 0 = identical, 1 = differences found</code></pre>
 
             <h3>Step 1 — Add to your .gitconfig</h3>
             <pre><code>[mergetool "dcp"]
-    cmd = "C:/path/to/DirectoryComparePro.exe" -m "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+    cmd = "C:/path/to/DirectCompare.exe" -m "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
     trustExitCode = true
 
 [merge]
@@ -166,12 +166,19 @@ git mergetool
 <footer>
     <div class="container">
         <p>
-            <strong>DirectoryCompare Pro</strong> &bull;
+            <strong>DirectCompare</strong> &bull;
             <a href="index.html">Home</a> &bull;
             <a href="download.html">Download</a> &bull;
             <a href="features.html">Features</a> &bull;
             <a href="git-branch-compare.html">Git Guide</a> &bull;
             <a href="support.html">Support</a>
+        </p>
+        <p style="margin-top:0.5rem;font-size:0.85rem;">
+            <strong>Guides:</strong> &bull;
+            <a href="git-branch-compare.html">Compare Git branches</a> &bull;
+            <a href="nway-folder-comparison.html">N-way folder comparison</a> &bull;
+            <a href="beyond-compare-alternative.html">Beyond Compare alternative</a> &bull;
+            <a href="winmerge-alternative.html">WinMerge alternative</a>
         </p>
     </div>
 </footer>

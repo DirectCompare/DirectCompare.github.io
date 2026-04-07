@@ -1,0 +1,401 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Switching from WinMerge? DirectCompare is a free Windows comparison tool with 3-way merge, Git integration, N-way comparison, and archive support — everything WinMerge lacks.">
+    <title>WinMerge Alternative - DirectCompare</title>
+    <style>
+        :root {
+            --bg: #07111f;
+            --panel: #0f1b2d;
+            --panel-2: #13243a;
+            --panel-3: #f8fbff;
+            --text: #eaf2ff;
+            --text-dark: #132033;
+            --muted: #a9b8cf;
+            --line: rgba(255, 255, 255, 0.12);
+            --line-dark: rgba(19, 32, 51, 0.12);
+            --brand: #6d8cff;
+            --brand-2: #8c6dff;
+            --accent: #4ee1c1;
+            --success: #16c47f;
+            --warning: #ffb84d;
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+            --radius: 20px;
+            --max-width: 1180px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(109, 140, 255, 0.18), transparent 30%),
+                radial-gradient(circle at top right, rgba(78, 225, 193, 0.10), transparent 24%),
+                linear-gradient(180deg, #081221 0%, #0b1526 40%, #f5f9ff 40%, #f5f9ff 100%);
+            min-height: 100vh;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        .container { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+
+        .nav {
+            position: sticky; top: 0; z-index: 20; backdrop-filter: blur(14px);
+            background: rgba(7, 17, 31, 0.74); border-bottom: 1px solid var(--line);
+        }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+        .nav-logo { font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; color: var(--text); }
+        .nav-links { display: flex; gap: 28px; font-size: 0.9rem; color: var(--muted); }
+        .nav-links a:hover { color: var(--text); }
+        .nav-cta { background: var(--brand); color: #fff; padding: 7px 18px; border-radius: 8px; font-size: 0.88rem; font-weight: 600; }
+
+        .hero { padding: 72px 0 56px; text-align: center; }
+        .hero-eyebrow { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 900; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 20px; }
+        .hero h1 span { color: var(--brand); }
+        .hero-sub { font-size: 1.15rem; color: var(--muted); max-width: 640px; margin: 0 auto 36px; }
+        .hero-cta { display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+        .btn { display: inline-block; padding: 13px 28px; border-radius: 10px; font-weight: 700; font-size: 0.97rem; transition: opacity 0.15s; }
+        .btn:hover { opacity: 0.88; }
+        .btn-primary { background: var(--brand); color: #fff; }
+        .btn-secondary { background: rgba(255,255,255,0.1); color: var(--text); border: 1px solid var(--line); }
+
+        .section { padding: 56px 0; color: var(--text-dark); }
+        .section-header { max-width: 720px; margin-bottom: 36px; }
+        .section-header h2 { font-size: clamp(1.6rem, 2.8vw, 2.3rem); font-weight: 800; margin-bottom: 10px; letter-spacing: -0.03em; color: var(--text-dark); }
+        .section-header p { color: #5b6a82; font-size: 1.04rem; }
+
+        .comparison-wrap { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+        th { padding: 13px 18px; text-align: left; font-weight: 700; border-bottom: 2px solid #dde6f4; color: #1a2f4a; }
+        td { padding: 11px 18px; border-bottom: 1px solid #eaf0f8; vertical-align: top; }
+        .dcp-col { background: #f0f4ff; font-weight: 600; color: #1a2f4a; }
+        .check { color: #16a34a; }
+        .check::before { content: "✓  "; font-weight: 700; }
+        .cross { color: #dc2626; }
+        .cross::before { content: "✗  "; font-weight: 700; }
+        .th-dcp { background: #eef1ff; color: #244899; }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: #fff; border: 1px solid #dde6f4; border-radius: 14px; padding: 24px; }
+        .card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: #1a2f4a; }
+        .card p { font-size: 0.94rem; color: #4a5d73; }
+        .badge { display: inline-block; background: var(--brand); color: #fff; font-size: 0.72rem; font-weight: 700; padding: 2px 9px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; }
+        .badge.free { background: #16a34a; }
+
+        .highlight-box { background: #eef1ff; border: 1px solid #c7d2f8; border-radius: 14px; padding: 28px 32px; margin-bottom: 24px; }
+        .highlight-box h3 { font-size: 1.1rem; font-weight: 700; color: #1a2f4a; margin-bottom: 10px; }
+        .highlight-box p { color: #3a4d62; }
+        .highlight-box code { background: #dde6f8; color: #244899; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 0.9em; }
+        pre { background: #0f1b2d; color: #a9d1ff; padding: 16px 20px; border-radius: 8px; overflow-x: auto; font-size: 0.91rem; margin: 12px 0; font-family: 'Consolas', monospace; }
+
+        .steps { counter-reset: steps; display: flex; flex-direction: column; gap: 20px; }
+        .step { display: flex; gap: 20px; align-items: flex-start; }
+        .step-num { counter-increment: steps; flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--brand); color: #fff; font-weight: 800; font-size: 1rem; display: flex; align-items: center; justify-content: center; }
+        .step-body h3 { font-size: 1rem; font-weight: 700; color: #1a2f4a; margin-bottom: 4px; }
+        .step-body p { font-size: 0.94rem; color: #4a5d73; }
+
+        .faq-grid { display: flex; flex-direction: column; gap: 16px; }
+        .faq-item { background: #fff; border: 1px solid #dde6f4; border-radius: 12px; padding: 20px 24px; }
+        .faq-item h3 { font-size: 1rem; font-weight: 700; color: #1a2f4a; margin-bottom: 6px; }
+        .faq-item p { font-size: 0.94rem; color: #4a5d73; }
+
+        .footer { background: var(--panel); border-top: 1px solid var(--line); padding: 32px 0; color: var(--muted); font-size: 0.9rem; }
+        .footer a { color: var(--brand); font-weight: 600; }
+        .footer a:hover { text-decoration: underline; }
+        .footer p + p { margin-top: 8px; }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <div class="container">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">DirectCompare</a>
+            <div class="nav-links">
+                <a href="features.html">Features</a>
+                <a href="git-branch-compare.html">Git Integration</a>
+                <a href="cli-guide.html">CLI Guide</a>
+                <a href="support.html">Support</a>
+            </div>
+            <a href="download.html" class="nav-cta btn">Download Free</a>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="container">
+        <p class="hero-eyebrow">WinMerge Alternative</p>
+        <h1>Everything WinMerge does,<br><span>plus everything it doesn't</span></h1>
+        <p class="hero-sub">DirectCompare is free, portable, and gives you 3-way merge, Git integration, and N-way comparison — features WinMerge users have been asking for for years.</p>
+        <div class="hero-cta">
+            <a href="download.html" class="btn btn-primary">Download Free (Portable)</a>
+            <a href="#comparison" class="btn btn-secondary">See the comparison</a>
+        </div>
+    </div>
+</header>
+
+<main>
+
+    <section class="section" id="comparison">
+        <div class="container">
+            <div class="section-header">
+                <h2>WinMerge vs DirectCompare</h2>
+                <p>Both are free. Here's what you gain by switching.</p>
+            </div>
+            <div class="comparison-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th class="th-dcp">DirectCompare</th>
+                            <th>WinMerge</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Price</td>
+                            <td class="dcp-col check">Free forever (Basic tier)</td>
+                            <td class="check">Free (open source)</td>
+                        </tr>
+                        <tr>
+                            <td>Portable / no install</td>
+                            <td class="dcp-col check">Yes - single exe, unzip and run</td>
+                            <td>Installer required</td>
+                        </tr>
+                        <tr>
+                            <td>Windows support</td>
+                            <td class="dcp-col check">Windows 10/11 (64-bit)</td>
+                            <td class="check">Windows</td>
+                        </tr>
+                        <tr>
+                            <td>Linux support</td>
+                            <td class="dcp-col check">Yes - Linux x86_64</td>
+                            <td class="cross">Windows only</td>
+                        </tr>
+                        <tr>
+                            <td>3-way merge (base/mine/yours)</td>
+                            <td class="dcp-col check">Yes - free in Basic tier</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>Git integration</td>
+                            <td class="dcp-col check">Native libgit2 - compare branches without checkout</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>GitHub integration</td>
+                            <td class="dcp-col check">Yes - via REST API, no cloning</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>N-way comparison (4+ sources)</td>
+                            <td class="dcp-col check">Yes (Standard tier, $39/yr)</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>Archive comparison</td>
+                            <td class="dcp-col check">ZIP, TAR, 7Z, RAR, ISO, CAB</td>
+                            <td>ZIP only</td>
+                        </tr>
+                        <tr>
+                            <td>Excel / CSV compare</td>
+                            <td class="dcp-col check">Yes - free</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>Image diff viewer</td>
+                            <td class="dcp-col check">Yes - visual pixel diff, free</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>Hex compare</td>
+                            <td class="dcp-col check">Yes - free</td>
+                            <td class="check">Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Folder sync with dry-run</td>
+                            <td class="dcp-col check">Yes - preview before sync, free</td>
+                            <td class="check">Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Ignore whitespace / CRLF</td>
+                            <td class="dcp-col check">Yes - free</td>
+                            <td class="check">Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Git mergetool support</td>
+                            <td class="dcp-col check">Yes - works via -m flag, free</td>
+                            <td class="check">Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Export to Excel / JSON / HTML</td>
+                            <td class="dcp-col check">Yes - free</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>Web URL comparison</td>
+                            <td class="dcp-col check">Yes (Premium tier)</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>Active development</td>
+                            <td class="dcp-col check">Yes - regular releases</td>
+                            <td>Infrequent releases</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <h2>The three things WinMerge users ask for most</h2>
+                <p>These come up constantly in WinMerge forums and Reddit threads. DCP ships them all free.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="card">
+                    <div class="badge free">Free</div>
+                    <h3>3-way merge (the #1 request)</h3>
+                    <p>WinMerge is 2-way only. When you're resolving a Git merge conflict you need a base/mine/yours view to understand <em>why</em> each side changed. DCP includes this in the free Basic tier — no upgrade required.</p>
+                </div>
+                <div class="card">
+                    <div class="badge free">Free</div>
+                    <h3>Git integration (the #2 request)</h3>
+                    <p>WinMerge has no native Git support. DCP uses libgit2 to read branch content directly — compare any two branches, commits, or tags without checkout, stash, or extra commands. Works offline too.</p>
+                </div>
+                <div class="card">
+                    <div class="badge free">Free</div>
+                    <h3>Excel and image diff (the #3 request)</h3>
+                    <p>WinMerge treats Excel files as binary blobs. DCP renders them as data and shows you which cells changed. Same for images — you get a visual pixel-level diff. Both free in Basic tier.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quick start for WinMerge users</h2>
+                <p>The core workflow is identical. These are the only things you need to learn.</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-body">
+                        <h3>Download and unzip</h3>
+                        <p>DCP is a single portable exe. No installer, no admin rights. Unzip to any folder — your Desktop, a USB drive, wherever. Then double-click <code>DirectCompare.exe</code>.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-body">
+                        <h3>Add your folders exactly as you would in WinMerge</h3>
+                        <p>Source 1 and Source 2 work the same way. Browse to your folders, click Compare. The results tree shows Different / Only in Source 1 / Only in Source 2 / Identical — same concepts, same workflow.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-body">
+                        <h3>Double-click any file for the diff viewer</h3>
+                        <p>The side-by-side diff viewer works like WinMerge's — prev/next diff navigation, inline character highlighting, sync scroll. Ignore whitespace and CRLF options are in the toolbar.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <div class="step-body">
+                        <h3>Set it as your Git mergetool (optional)</h3>
+                        <p>Add this to your <code>.gitconfig</code> and you're done:</p>
+                        <pre>[mergetool "dcp"]
+    cmd = "C:/path/to/DirectCompare.exe" -m "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+    trustExitCode = true
+
+[merge]
+    tool = dcp</pre>
+                        <p>Now <code>git mergetool</code> opens DCP automatically with the 3-way conflict view. Free in Basic tier.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">5</div>
+                    <div class="step-body">
+                        <h3>Try Git branch compare (the big one)</h3>
+                        <p>Add a source, change the type to <strong>Git</strong>, browse to your repo, pick a branch. Add a second Git source with a different branch. Click Compare. You're now diffing branches without a single <code>git checkout</code>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="highlight-box">
+                <h3>Already using WinMerge as your Git mergetool?</h3>
+                <p>Switching is a one-line change in your <code>.gitconfig</code>. Replace the WinMerge cmd line with the DCP one above. You gain 3-way ancestor view (base/mine/yours) which WinMerge can't provide — that alone makes merge conflicts significantly easier to resolve correctly.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently asked questions</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>Is it really free? What's the catch?</h3>
+                    <p>The Basic tier is free forever with no time limit. It includes 2-way comparison, 3-way merge, archive compare, Excel/image diff, hex compare, sync preview, exports, and Git mergetool support. Paid tiers unlock Git branch comparison, N-way sources (4+), GitHub, and web/FTP comparison.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Do I need to install anything?</h3>
+                    <p>No. DCP is a single portable exe. Unzip it anywhere — Desktop, USB drive, network share — and run it. No installer, no admin rights, no registry changes. To uninstall, delete the folder.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Does it work on Linux?</h3>
+                    <p>Yes. DirectCompare supports Linux x86_64. Download the tarball, extract it, and run the binary. The same features work on both platforms.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>WinMerge could compare inside archives. Can DCP?</h3>
+                    <p>Yes — ZIP, TAR, 7Z, RAR, ISO, and CAB archives are all supported. DCP actually goes further, letting you compare an archive against a live folder or a Git branch.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>I use WinMerge's shell integration (right-click compare). Does DCP have that?</h3>
+                    <p>Not currently. DCP is focused on the GUI and CLI workflow. If you rely heavily on shell integration, that's worth noting before switching.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I try the paid features before buying?</h3>
+                    <p>Yes — there's a 30-day full Premium trial that starts automatically on first launch. No sign-up or credit card required.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p>
+            <strong>DirectCompare</strong> &bull;
+            <a href="index.html">Home</a> &bull;
+            <a href="download.html">Download</a> &bull;
+            <a href="support.html">Support</a> &bull;
+            <a href="privacy.html">Privacy</a> &bull;
+            <a href="https://github.com/DirectCompare/DirectCompare" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </p>
+        <p style="margin-top:0.5rem;font-size:0.85rem;">
+            <strong>Guides:</strong> &bull;
+            <a href="git-branch-compare.html">Compare Git branches</a> &bull;
+            <a href="beyond-compare-alternative.html">Beyond Compare alternative</a> &bull;
+            <a href="nway-folder-comparison.html">N-way folder comparison</a> &bull;
+            <a href="cli-guide.html">CLI Quick Start</a>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
