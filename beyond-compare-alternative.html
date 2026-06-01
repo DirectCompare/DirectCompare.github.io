@@ -288,28 +288,73 @@
                         </tr>
                         <tr>
                             <td>N-way comparison</td>
-                            <td class="dcp-col check">Unlimited N-way (2, 3, 4+ sources)</td>
+                            <td class="dcp-col check">Unlimited N-way (2, 3, 4+ sources) - Standard</td>
                             <td>3-way only (Pro edition)</td>
                         </tr>
                         <tr>
                             <td>Git integration</td>
-                            <td class="dcp-col check">Native libgit2 - no checkout needed</td>
+                            <td class="dcp-col check">Native libgit2 - no checkout needed (Standard)</td>
                             <td>Basic Git support</td>
                         </tr>
                         <tr>
                             <td>GitHub integration</td>
-                            <td class="dcp-col check">Via REST API - no cloning</td>
+                            <td class="dcp-col check">Via REST API - no cloning (Premium)</td>
                             <td class="cross">Not natively</td>
                         </tr>
                         <tr>
                             <td>Archive comparison</td>
-                            <td class="dcp-col check">ZIP, TAR, 7Z, RAR, ISO</td>
+                            <td class="dcp-col check">ZIP, TAR, 7Z, RAR, ISO, CAB (Standard)</td>
                             <td class="check">ZIP and others</td>
                         </tr>
                         <tr>
                             <td>FTP/SFTP comparison</td>
                             <td class="dcp-col check">Yes (Premium tier)</td>
                             <td class="check">Yes (Pro edition)</td>
+                        </tr>
+                        <tr>
+                            <td>CSV/Excel comparison</td>
+                            <td class="dcp-col check">Yes (Premium)</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>Image comparison (perceptual hashing)</td>
+                            <td class="dcp-col check">dHash/aHash (Premium)</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>PDF viewer</td>
+                            <td class="dcp-col check">Built-in</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>Markdown viewer</td>
+                            <td class="dcp-col check">Built-in</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>Hex compare</td>
+                            <td class="dcp-col check">Yes</td>
+                            <td class="check">Yes (Pro)</td>
+                        </tr>
+                        <tr>
+                            <td>Folder snapshots</td>
+                            <td class="dcp-col check">Yes</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>File versioning</td>
+                            <td class="dcp-col check">Yes</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>Session tabs and workspaces</td>
+                            <td class="dcp-col check">Yes</td>
+                            <td>Session-based</td>
+                        </tr>
+                        <tr>
+                            <td>CLI automation and IPC</td>
+                            <td class="dcp-col check">Headless mode, exit codes, IPC integration</td>
+                            <td>Command-line only</td>
                         </tr>
                         <tr>
                             <td>Trial period</td>
@@ -324,6 +369,16 @@
                         <tr>
                             <td>Similarity search</td>
                             <td class="dcp-col check">Yes (Premium tier)</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>Merge editor</td>
+                            <td class="dcp-col check">Yes (Premium)</td>
+                            <td class="check">Yes (Pro)</td>
+                        </tr>
+                        <tr>
+                            <td>Enterprise features</td>
+                            <td class="dcp-col check">Admin Centre, collaborative workspaces, admin policies, registry toolkit</td>
                             <td class="cross">No</td>
                         </tr>
                     </tbody>
@@ -342,12 +397,12 @@
                 <div class="card">
                     <div class="badge">Free tier</div>
                     <h3>Free forever, not just a trial</h3>
-                    <p>The Basic tier of DirectCompare is free with no expiry date. You get 2-way directory comparison, <strong>3-way merge (base/mine/yours - free!)</strong>, text and hex diff viewer, archive comparison, CSV/Excel compare, image diff, patch support, and session management - at no cost, indefinitely.</p>
+                    <p>The Basic tier of DirectCompare is free with no expiry date. You get 2-way directory comparison, exports (CSV/HTML/JSON), bookmarks, sessions, and themes - at no cost, indefinitely.</p>
                 </div>
                 <div class="card">
                     <div class="badge">N-Way</div>
                     <h3>Unlimited N-way sources</h3>
-                    <p>Beyond Compare Pro supports 3-way merging (paid). DirectCompare includes 3-way merge free in the Basic tier, and supports arbitrary N-way comparison (4+ sources) in Standard and above - add local folders, Git branches, GitHub repos, archives, FTP paths, or web URLs simultaneously.</p>
+                    <p>Beyond Compare Pro supports 3-way merging (paid). DirectCompare supports arbitrary N-way comparison (3+ sources) in the Standard tier and above - add local folders, Git branches, GitHub repos, archives, FTP paths, or web URLs simultaneously.</p>
                 </div>
                 <div class="card">
                     <div class="badge">Git</div>
@@ -411,7 +466,7 @@
                 </div>
                 <div class="card">
                     <h3>Step 4 - Open the diff viewer</h3>
-                    <p>Double-click any file to open the diff viewer. Sync-scroll, prev/next diff navigation, and inline merge are all present. For 3-way conflicts: right-click a file and choose <strong>Merge (3-way)</strong> - free in Basic tier, no upgrade needed.</p>
+                    <p>Double-click any file to open the diff viewer. Sync-scroll, prev/next diff navigation, and inline merge are all present. For 3-way conflicts: right-click a file and choose <strong>Merge (3-way)</strong> to open the merge editor (Premium tier).</p>
                 </div>
                 <div class="card">
                     <h3>Step 5 - Set it as your Git mergetool (optional)</h3>
@@ -453,7 +508,7 @@
             <div class="faq-list">
                 <div class="faq-item">
                     <h3>Is DirectCompare really free?</h3>
-                    <p>The Basic tier is free with no expiry. It covers 2-way local directory comparison, text and hex diff viewing, archive comparison (ZIP, TAR, 7Z, RAR, ISO), CSV/Excel compare, image diff, patch support, and session bookmarks. Standard and Premium features require a paid license, but the Basic tier does not expire.</p>
+                    <p>The Basic tier is free with no expiry. It covers 2-way local directory comparison, exports, bookmarks, sessions, and themes. Standard adds N-way, Git, and archive support. Premium adds GitHub, FTP/SFTP, similarity search, merge editor, image comparison, and CSV/Excel. Enterprise adds Admin Centre, collaborative workspaces, admin policies, and registry toolkit.</p>
                 </div>
                 <div class="faq-item">
                     <h3>Does it run on Linux?</h3>

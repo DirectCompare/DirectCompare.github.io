@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Switching from WinMerge? DirectCompare is a free Windows comparison tool with 3-way merge, Git integration, N-way comparison, and archive support — everything WinMerge lacks.">
+    <meta name="description" content="Switching from WinMerge? DirectCompare offers N-way comparison, Git integration, archive support, FTP/SFTP, image comparison, and more — everything WinMerge lacks. Free Basic tier available.">
     <title>WinMerge Alternative - DirectCompare</title>
     <style>
         :root {
@@ -131,7 +131,7 @@
     <div class="container">
         <p class="hero-eyebrow">WinMerge Alternative</p>
         <h1>Everything WinMerge does,<br><span>plus everything it doesn't</span></h1>
-        <p class="hero-sub">DirectCompare is free, portable, and gives you 3-way merge, Git integration, and N-way comparison — features WinMerge users have been asking for for years.</p>
+        <p class="hero-sub">DirectCompare is portable and gives you N-way comparison, Git integration, archive support, FTP/SFTP, image comparison, CSV/Excel, and more — features WinMerge users have been asking for for years. Free Basic tier available.</p>
         <div class="hero-cta">
             <a href="download.html" class="btn btn-primary">Download Free (Portable)</a>
             <a href="#comparison" class="btn btn-secondary">See the comparison</a>
@@ -178,73 +178,113 @@
                             <td class="cross">Windows only</td>
                         </tr>
                         <tr>
-                            <td>3-way merge (base/mine/yours)</td>
-                            <td class="dcp-col check">Yes - free in Basic tier</td>
-                            <td class="cross">No</td>
-                        </tr>
-                        <tr>
-                            <td>Git integration</td>
-                            <td class="dcp-col check">Native libgit2 - compare branches without checkout</td>
-                            <td class="cross">No</td>
-                        </tr>
-                        <tr>
-                            <td>GitHub integration</td>
-                            <td class="dcp-col check">Yes - via REST API, no cloning</td>
-                            <td class="cross">No</td>
-                        </tr>
-                        <tr>
-                            <td>N-way comparison (4+ sources)</td>
+                            <td>N-way comparison (3+ sources)</td>
                             <td class="dcp-col check">Yes (Standard tier, $39/yr)</td>
                             <td class="cross">No</td>
                         </tr>
                         <tr>
-                            <td>Archive comparison</td>
-                            <td class="dcp-col check">ZIP, TAR, 7Z, RAR, ISO, CAB</td>
-                            <td>ZIP only</td>
-                        </tr>
-                        <tr>
-                            <td>Excel / CSV compare</td>
-                            <td class="dcp-col check">Yes - free</td>
+                            <td>Git integration</td>
+                            <td class="dcp-col check">Native libgit2 - compare branches without checkout (Standard)</td>
                             <td class="cross">No</td>
                         </tr>
                         <tr>
-                            <td>Image diff viewer</td>
-                            <td class="dcp-col check">Yes - visual pixel diff, free</td>
+                            <td>GitHub integration</td>
+                            <td class="dcp-col check">Yes - via REST API, no cloning (Premium)</td>
                             <td class="cross">No</td>
                         </tr>
                         <tr>
-                            <td>Hex compare</td>
-                            <td class="dcp-col check">Yes - free</td>
-                            <td class="check">Yes</td>
-                        </tr>
-                        <tr>
-                            <td>Folder sync with dry-run</td>
-                            <td class="dcp-col check">Yes - preview before sync, free</td>
-                            <td class="check">Yes</td>
-                        </tr>
-                        <tr>
-                            <td>Ignore whitespace / CRLF</td>
-                            <td class="dcp-col check">Yes - free</td>
-                            <td class="check">Yes</td>
-                        </tr>
-                        <tr>
-                            <td>Git mergetool support</td>
-                            <td class="dcp-col check">Yes - works via -m flag, free</td>
-                            <td class="check">Yes</td>
-                        </tr>
-                        <tr>
-                            <td>Export to Excel / JSON / HTML</td>
-                            <td class="dcp-col check">Yes - free</td>
-                            <td class="cross">No</td>
-                        </tr>
-                        <tr>
-                            <td>Web URL comparison</td>
+                            <td>FTP/SFTP comparison</td>
                             <td class="dcp-col check">Yes (Premium tier)</td>
                             <td class="cross">No</td>
                         </tr>
                         <tr>
+                            <td>Archive comparison</td>
+                            <td class="dcp-col check">ZIP, TAR, 7Z, RAR, ISO, CAB (Standard)</td>
+                            <td>ZIP only</td>
+                        </tr>
+                        <tr>
+                            <td>CSV / Excel compare</td>
+                            <td class="dcp-col check">Yes (Premium)</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>Image comparison (perceptual hashing)</td>
+                            <td class="dcp-col check">Yes - dHash/aHash (Premium)</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>Hex compare</td>
+                            <td class="dcp-col check">Yes</td>
+                            <td class="check">Yes</td>
+                        </tr>
+                        <tr>
+                            <td>PDF viewer</td>
+                            <td class="dcp-col check">Built-in</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>Markdown viewer</td>
+                            <td class="dcp-col check">Built-in</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>Folder snapshots</td>
+                            <td class="dcp-col check">Yes</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>File versioning</td>
+                            <td class="dcp-col check">Yes</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>Session tabs and workspaces</td>
+                            <td class="dcp-col check">Yes</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>CLI automation and IPC</td>
+                            <td class="dcp-col check">Yes - headless mode, exit codes, IPC integration</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>Similarity search</td>
+                            <td class="dcp-col check">Yes (Premium)</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>Merge editor</td>
+                            <td class="dcp-col check">Yes (Premium)</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>Folder sync with dry-run</td>
+                            <td class="dcp-col check">Yes - preview before sync</td>
+                            <td class="check">Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Ignore whitespace / CRLF</td>
+                            <td class="dcp-col check">Yes</td>
+                            <td class="check">Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Git mergetool support</td>
+                            <td class="dcp-col check">Yes - works via -m flag</td>
+                            <td class="check">Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Export to CSV / JSON / HTML</td>
+                            <td class="dcp-col check">Yes (Basic)</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
+                            <td>Enterprise features</td>
+                            <td class="dcp-col check">Admin Centre, collaborative workspaces, admin policies, registry toolkit</td>
+                            <td class="cross">No</td>
+                        </tr>
+                        <tr>
                             <td>Active development</td>
-                            <td class="dcp-col check">Yes - regular releases</td>
+                            <td class="dcp-col check">Yes - v1.08, regular releases</td>
                             <td>Infrequent releases</td>
                         </tr>
                     </tbody>
@@ -257,23 +297,23 @@
         <div class="container">
             <div class="section-header">
                 <h2>The three things WinMerge users ask for most</h2>
-                <p>These come up constantly in WinMerge forums and Reddit threads. DCP ships them all free.</p>
+                <p>These come up constantly in WinMerge forums and Reddit threads. DCP ships them all.</p>
             </div>
             <div class="feature-grid">
                 <div class="card">
-                    <div class="badge free">Free</div>
-                    <h3>3-way merge (the #1 request)</h3>
-                    <p>WinMerge is 2-way only. When you're resolving a Git merge conflict you need a base/mine/yours view to understand <em>why</em> each side changed. DCP includes this in the free Basic tier — no upgrade required.</p>
+                    <div class="badge">Standard</div>
+                    <h3>Git integration (the #1 request)</h3>
+                    <p>WinMerge has no native Git support. DCP uses libgit2 to read branch content directly — compare any two branches, commits, or tags without checkout, stash, or extra commands. Works offline too. Available in Standard tier ($39/yr).</p>
                 </div>
                 <div class="card">
-                    <div class="badge free">Free</div>
-                    <h3>Git integration (the #2 request)</h3>
-                    <p>WinMerge has no native Git support. DCP uses libgit2 to read branch content directly — compare any two branches, commits, or tags without checkout, stash, or extra commands. Works offline too.</p>
+                    <div class="badge">Standard</div>
+                    <h3>N-way comparison (the #2 request)</h3>
+                    <p>WinMerge is 2-way only. DCP supports N-way comparison with 3, 4, or more sources simultaneously. Compare dev, staging, and production in one view with minority-difference highlighting. Available in Standard tier.</p>
                 </div>
                 <div class="card">
-                    <div class="badge free">Free</div>
-                    <h3>Excel and image diff (the #3 request)</h3>
-                    <p>WinMerge treats Excel files as binary blobs. DCP renders them as data and shows you which cells changed. Same for images — you get a visual pixel-level diff. Both free in Basic tier.</p>
+                    <div class="badge">Premium</div>
+                    <h3>Excel/CSV, image diff, and merge editor (the #3 request)</h3>
+                    <p>WinMerge treats Excel files as binary blobs. DCP renders them as data and shows you which cells changed. Same for images — you get perceptual hashing with dHash/aHash. Plus a full merge editor. Available in Premium tier ($79/yr).</p>
                 </div>
             </div>
         </div>
@@ -318,7 +358,7 @@
 
 [merge]
     tool = dcp</pre>
-                        <p>Now <code>git mergetool</code> opens DCP automatically with the 3-way conflict view. Free in Basic tier.</p>
+                        <p>Now <code>git mergetool</code> opens DCP automatically with the 3-way conflict view.</p>
                     </div>
                 </div>
                 <div class="step">
@@ -349,7 +389,7 @@
             <div class="faq-grid">
                 <div class="faq-item">
                     <h3>Is it really free? What's the catch?</h3>
-                    <p>The Basic tier is free forever with no time limit. It includes 2-way comparison, 3-way merge, archive compare, Excel/image diff, hex compare, sync preview, exports, and Git mergetool support. Paid tiers unlock Git branch comparison, N-way sources (4+), GitHub, and web/FTP comparison.</p>
+                    <p>The Basic tier is free forever with no time limit. It includes 2-way comparison, exports (CSV/HTML/JSON), bookmarks, sessions, and themes. Standard ($39/yr) adds N-way, Git, and archive support. Premium ($79/yr) adds GitHub, FTP/SFTP, similarity search, merge editor, image comparison, and CSV/Excel. Enterprise adds Admin Centre, collaborative workspaces, admin policies, and registry toolkit.</p>
                 </div>
                 <div class="faq-item">
                     <h3>Do I need to install anything?</h3>
